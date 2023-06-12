@@ -4,6 +4,7 @@ import Header from './components/Header';
 import Test1 from './test/Test1';
 import Home from './pages/Home';
 import './css/style.css';
+import Footer from './components/Footer';
 const App = () => {
   return (
     <div>
@@ -13,6 +14,8 @@ const App = () => {
 
 <Home/>
 
+
+<Footer/>
     </div>
   )
 }

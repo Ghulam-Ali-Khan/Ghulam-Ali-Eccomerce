@@ -248,132 +248,224 @@ sans-serif;
 
 // Product Card
 
-.products-grid{
+.products-grid {
     display: grid;
-    grid-template-columns: repeat(5, 1fr); 
-    row-gap: 14px; 
+    grid-template-columns: repeat(5, 1fr);
+    row-gap: 14px;
+
     @media (max-width: 768px) {
-        grid-template-columns: repeat(3, 1fr); /* 3 cards per row on tablet */
-      }
-    
-      /* Mobile styles */
-      @media (max-width: 480px) {
-        grid-template-columns: repeat(1, 1fr); /* 1 card per row on mobile */
-      }
-
-.product-card {
-    max-width: 300px;
-    margin: 0px 7px;
-    position: relative;
-    .discount{
-        background: $theme_green;
-        color: white;
-        @include regular_font();
-        position: absolute;
-        padding: 5px;
-        right: 0;
-        border-bottom-left-radius: 12px;
-    }
-    img {
-        max-height: 250px;
+        grid-template-columns: repeat(3, 1fr);
+        /* 3 cards per row on tablet */
     }
 
-    .description {
+    /* Mobile styles */
+    @media (max-width: 480px) {
+        grid-template-columns: repeat(1, 1fr);
+        /* 1 card per row on mobile */
+    }
 
-        padding: 10px;
+    .product-card {
+        max-width: 300px;
+        margin: 0px 7px;
+        position: relative;
 
-        .category {
+        .discount {
+            background: $theme_green;
+            color: white;
             @include regular_font();
-            font-size: 15px;
-            color: $theme_light_black;
+            position: absolute;
+            padding: 5px;
+            right: 0;
+            border-bottom-left-radius: 12px;
         }
 
-        .title {
-            @include regular_font();
-            font-size: 18px;
-            font-weight: 600;
-
+        img {
+            max-height: 250px;
         }
 
-       
-        .price-now {
-            @include regular_font();
-            font-size: 14px;
-            font-weight: 700;
-            margin: auto 0px;
-            color: $theme_green
-        }
+        .description {
 
-        .price-before {
-            @include regular_font();
-            font-size: 12px;
-            color: $theme_light_black;
-            text-decoration: line-through;
-            margin: auto 5px;
-        }
+            padding: 10px;
 
-        .icon-box {
-
-            height: 40px;
-            width: 40px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-
-            transition: all 0.3s ease-in-out;
-
-            .add-icon {
-                color: $theme_green;
-            }
-
-            .add-to-cart,
-            .add-icon {
-                display: none;
-                opacity: 1;
-            }
-            .add-to-cart{
-                font-size: 12.5px;
+            .category {
                 @include regular_font();
-                font-weight: 600;
+                font-size: 15px;
+                color: $theme_light_black;
             }
-            &:hover {
-                gap: 5px;
-                height: fit-content;
-                width: auto;
+
+            .title {
+                @include regular_font();
+                font-size: 18px;
+                font-weight: 600;
+
+            }
+
+
+            .price-now {
+                @include regular_font();
+                font-size: 14px;
+                font-weight: 700;
                 margin: auto 0px;
-                padding:5px 10px;
-                border-radius: 20px;
-               
+                color: $theme_green
+            }
 
-                .cart-icon {
-                    display: none;
-                    opacity: 0;
+            .price-before {
+                @include regular_font();
+                font-size: 12px;
+                color: $theme_light_black;
+                text-decoration: line-through;
+                margin: auto 5px;
+            }
 
+            .icon-box {
+
+                height: 40px;
+                width: 40px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                cursor: pointer;
+
+                transition: all 0.3s ease-in-out;
+
+                .add-icon {
+                    color: $theme_green;
                 }
 
                 .add-to-cart,
                 .add-icon {
-                    display: initial;
+                    display: none;
+                    opacity: 1;
                 }
+
+                .add-to-cart {
+                    font-size: 12.5px;
+                    @include regular_font();
+                    font-weight: 600;
+                }
+
+                &:hover {
+                    gap: 5px;
+                    height: fit-content;
+                    width: auto;
+                    margin: auto 0px;
+                    padding: 5px 10px;
+                    border-radius: 20px;
+
+
+                    .cart-icon {
+                        display: none;
+                        opacity: 0;
+
+                    }
+
+                    .add-to-cart,
+                    .add-icon {
+                        display: initial;
+                    }
+
+                }
+
 
             }
 
 
+
         }
-
-
 
     }
 
 }
 
-}
 
-
-.load-more{
+.load-more {
     margin: auto;
     background-color: $theme_green !important;
     color: white !important;
     padding: 10px 15px !important;
+}
+
+
+// Footer
+
+.footer-top {
+    margin-top: 15px;
+    padding: 30px 0px;
+    background: $theme_footer_black !important;
+
+    .footer-col{
+        @media (min-width:1200px) {
+            padding-right: 20px;
+        }
+    }
+
+    p{
+       @include regular_font();  
+       font-size: 12px;
+       text-align: justify;
+    }
+   
+    .logo {
+        max-width: 200px;
+        margin-bottom: 15px;
+    }
+
+    .social-icons{
+        display: flex;
+        gap: 7px;
+        margin-top: 15px;
+
+        svg{
+            font-size: 30px;
+        }
+    }
+    .footer-links-head{
+        font-family: 500;
+        font-family: $heading_font;
+        font-size: 1.5rem;
+    }
+    .links{
+        @include regular_font();
+        margin-top: 15px;
+       .link{
+        padding-left: 0;
+        margin-left: 0;
+        font-size: 14px;
+       }
+    }
+    .subscribe-field{
+        padding: 10px;
+        width: 100%;
+        background-color: transparent;
+        border: 1px solid white ;
+        color: white;
+        border-radius: 2px;
+        outline: none;
+        margin-top: 15px;
+        &:focus{
+            background-color: white; 
+            color: $theme_light_black; 
+        }
+    }
+    .subscribe-btn{
+        cursor: pointer;
+        background-color: white;
+        color: $theme_footer_black;
+        @include regular_font();
+        padding: 10px 15px;
+        margin-top: 15px;
+
+        &:hover{
+            background-color: $theme_footer_black;
+            color: white;
+            border: 1px solid white;
+        }
+ 
+    }
+    .subscribe-col{
+        @media (max-width:1200px) {
+            padding-right: 20px;
+         }
+    }
+
 }

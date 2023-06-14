@@ -351,4 +351,12 @@
   .footer-top .subscribe-col {
     padding-right: 20px;
   }
+}
+
+.css-1bjk3jo-MuiButtonBase-root-MuiBottomNavigationAction-root.Mui-selected {
+  color: #2ecc71 !important;
+}
+
+.MuiBadge-badge {
+  background-color: red !important;
 }/*# sourceMappingURL=style.css.map */

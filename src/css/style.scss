@@ -469,3 +469,12 @@ sans-serif;
     }
 
 }
+
+// Bottom Navbar
+
+.css-1bjk3jo-MuiButtonBase-root-MuiBottomNavigationAction-root.Mui-selected{
+    color:$theme_green !important;
+}
+.MuiBadge-badge{
+    background-color: red !important;
+}

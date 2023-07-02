@@ -331,6 +331,11 @@
   width: 100%;
   z-index: 7;
 }
+.ga-bottom-nav-menu .MuiBottomNavigationAction-label {
+  font-weight: 500;
+  font-family: "Raleway", sans-serif;
+  font-size: 10px;
+}
 
 .main-header {
   background: pink;
@@ -671,6 +676,11 @@
     padding-right: 20px;
   }
 }
+@media (max-width: 900px) {
+  .footer-top .subscribe-col {
+    margin-bottom: 70px;
+  }
+}
 
 .css-1bjk3jo-MuiButtonBase-root-MuiBottomNavigationAction-root.Mui-selected {
   color: #2ecc71 !important;
@@ -678,4 +688,138 @@
 
 .MuiBadge-badge {
   background-color: red !important;
+}
+
+.categories-section .img-section img {
+  max-width: 100%;
+}
+.categories-section .cards-section .collection-head {
+  font-family: "Geologica", sans-serif;
+  font-size: 2rem;
+  text-align: center;
+  font-weight: 700;
+}
+.categories-section .cards-section .subhead {
+  font-weight: 500;
+  font-family: "Raleway", sans-serif;
+  font-size: 13px;
+  text-align: center;
+  margin: 15px 0px;
+}
+.categories-section .cards-section .card {
+  border: none;
+  transition: all 0.5s ease;
+}
+.categories-section .cards-section .card .img-area img {
+  max-width: 100%;
+  border: none;
+}
+.categories-section .cards-section .card .img-area .img-front {
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 1;
+  transition: opacity 0.5s ease;
+}
+.categories-section .cards-section .card .img-area .discount {
+  background-color: #2ecc71;
+  padding: 3px 10px;
+  z-index: 2;
+  position: absolute;
+  font-size: 12px;
+  font-family: "Raleway", sans-serif;
+  color: white;
+  font-weight: 700;
+  right: 0;
+  border-bottom-left-radius: 10px;
+}
+.categories-section .cards-section .card:hover .img-area .img-front {
+  opacity: 0;
+}
+.categories-section .cards-section .card:hover {
+  cursor: pointer;
+}
+.categories-section .cards-section .card:hover .content .add-cart-price .add-cart {
+  opacity: 1;
+}
+.categories-section .cards-section .card .content {
+  font-weight: 500;
+  font-family: "Raleway", sans-serif;
+}
+.categories-section .cards-section .card .content .category-name {
+  font-size: 12px;
+  color: rgba(0, 0, 0, 0.768627451);
+  margin-top: 10px;
+  font-weight: 700;
+}
+.categories-section .cards-section .card .content .product-name {
+  font-size: 14px;
+  font-family: "Geologica", sans-serif;
+  color: #767676;
+  font-weight: 500;
+}
+.categories-section .cards-section .card .content .add-cart-price {
+  display: flex;
+  justify-content: space-between;
+}
+.categories-section .cards-section .card .content .add-cart-price .product-price {
+  font-size: 16px;
+  font-weight: 700;
+}
+.categories-section .cards-section .card .content .add-cart-price .add-cart {
+  color: #2ecc71;
+  opacity: 0;
+  transition: opacity 0.5s ease-out;
+}
+
+.ad-bnr {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.latest-blogs-head {
+  font-family: "Geologica", sans-serif;
+  font-size: 2rem;
+  text-align: center;
+}
+
+.latest-blogs-para {
+  font-weight: 500;
+  font-family: "Raleway", sans-serif;
+  font-size: 13px;
+  text-align: center;
+  margin: 15px 0px;
+}
+
+.blog-slider {
+  margin-bottom: 50px;
+}
+.blog-slider .blog-card {
+  margin: 0px 10px;
+}
+.blog-slider .blog-card .img-area img {
+  max-width: 100%;
+}
+.blog-slider .blog-card .content {
+  font-family: "Raleway", sans-serif;
+}
+.blog-slider .blog-card .content .category-time {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0px;
+  margin-bottom: 0px;
+}
+.blog-slider .blog-card .content .category-time .category {
+  font-size: 16px;
+  color: rgba(0, 0, 0, 0.768627451);
+}
+.blog-slider .blog-card .content .category-time .time {
+  font-size: 12px;
+  color: #767676;
+}
+.blog-slider .blog-card .content .title {
+  font-size: 18px;
+}
+.blog-slider .blog-card .content .description {
+  font-size: 13px;
 }/*# sourceMappingURL=style.css.map */

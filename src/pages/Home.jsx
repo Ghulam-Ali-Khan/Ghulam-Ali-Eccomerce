@@ -1,16 +1,49 @@
-import React, { useState } from 'react';
+import React, { useState,lazy } from 'react';
 import SliderCraousal from '../components/SliderCraousal';
-import { Button } from '@mui/material';
-import { Typography } from '@material-ui/core';
-import CrousalItem from "../components/CrousalItem";
-import ProductCard from '../components/ProductCard';
+// import { Button } from '@mui/material';
+// import { Typography } from '@material-ui/core';
+// import CrousalItem from "../components/CrousalItem";
+// import ProductCard from '../components/ProductCard';
+// import CategoriesSection from '../components/CategoriesSection';
+const CategoriesSection = lazy(() => import('../components/CategoriesSection'));
+import Slider from "react-slick";
+// import BlogCard from '../components/BlogCard';
+
+const BlogCard = lazy(() => import('../components/BlogCard'));
+
 const Home = () => {
-  const settings = {
+  var settings = {
     dots: true,
     infinite: true,
     speed: 500,
     slidesToShow: 3,
     slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 3000,
+    arrows: true,
+    responsive: [
+      {
+        breakpoint: 1024, // Desktop breakpoint
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 3,
+        },
+      },
+      {
+        breakpoint: 768, // Tablet breakpoint
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+        },
+      },
+      {
+        breakpoint: 480, // Mobile breakpoint
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
   };
   const products = [
     {
@@ -78,10 +111,57 @@ const Home = () => {
   return (
     <>
       <SliderCraousal />
-      <Typography className='heading-styled' component='h2' variant='h3'>
+      {/* <Typography className='heading-styled' component='h2' variant='h3'>
         Categories
-      </Typography>
-      <CrousalItem />
+      </Typography> */}
+
+      <div className="container" style={{marginTop:"20px"}}>
+        <CategoriesSection sectionDirection={false} />
+
+        <img src="https://htmldemo.net/reid/reid/assets/img/bg/banner3.jpg" alt="" className='ad-bnr' />
+
+        <CategoriesSection sectionDirection={true} />
+
+
+
+        <h2 className="latest-blogs-head">
+          Latest Blogs
+        </h2>
+        <p className='latest-blogs-para'>Contemporary, minimal and modern designs embody the Lavish Alice handwriting</p>
+
+
+        <Slider {...settings} className='blog-slider'>
+          <div>
+            <BlogCard />
+          </div>
+          <div>
+            <BlogCard />
+          </div>
+          <div>
+            <BlogCard />
+          </div>
+          <div>
+            <BlogCard />
+          </div>
+          <div>
+            <BlogCard />
+          </div>
+          <div>
+            <BlogCard />
+          </div>
+        </Slider>
+      </div>
+
+
+
+
+
+
+      {/* <CrousalItem /> */}
+
+
+
+{/* 
       <Typography className='heading-styled' component='h2' variant='h3'>
         Products
       </Typography>
@@ -103,10 +183,10 @@ const Home = () => {
         )
       }
 
+ */}
 
 
 
-     
     </>
   );
 }

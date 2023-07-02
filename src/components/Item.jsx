@@ -5,7 +5,7 @@ const Item = (props) => {
     <>
 
 <Card
-className='category-card'
+className='blogs-card'
 style={{maxWidth:'350px'}}
 >
 

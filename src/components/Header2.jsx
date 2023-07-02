@@ -14,6 +14,10 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import CloseIcon from '@mui/icons-material/Close';
 import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
 // import DraftsOutlinedIcon from '@mui/icons-material/DraftsOutlined';
+import ExploreOutlinedIcon from '@mui/icons-material/ExploreOutlined';
+import ShoppingBasketOutlinedIcon from '@mui/icons-material/ShoppingBasketOutlined';
+import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
+import CampaignOutlinedIcon from '@mui/icons-material/CampaignOutlined';
 const Header2 = () => {
 
     const [valueBottomMenu, setValueBottomMenu] = React.useState(0);
@@ -229,9 +233,10 @@ const Header2 = () => {
     setValueBottomMenu(newValue);
   }}
 >
-  <BottomNavigationAction label="Recents" icon={<SearchIcon />} />
-  <BottomNavigationAction label="Favorites" icon={<SearchIcon />} />
-  <BottomNavigationAction label="Nearby" icon={<SearchIcon />} />
+  <BottomNavigationAction label="Shop" icon={<HomeOutlinedIcon />} />
+  <BottomNavigationAction label="Explore" icon={<ExploreOutlinedIcon />} />
+  <BottomNavigationAction label="Cart" icon={<ShoppingBasketOutlinedIcon />} />
+  <BottomNavigationAction label="Offers" icon={<CampaignOutlinedIcon />} />
 </BottomNavigation>
 
 

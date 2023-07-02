@@ -289,94 +289,108 @@ sans-serif;
     }
 }
 
-.ga-menu-sm{
+.ga-menu-sm {
 
-.MuiDrawer-paper{
-  overflow-x: hidden;  
-}
+    .MuiDrawer-paper {
+        overflow-x: hidden;
+    }
+
     overflow-x: hidden !important;
 
-    .MuiPaper-root{
+    .MuiPaper-root {
         min-width: 250px !important;
     }
-    .close-btn-area{
+
+    .close-btn-area {
         display: flex;
-        justify-content: space-between; 
-        margin:5px;
-        .close-btn{
+        justify-content: space-between;
+        margin: 5px;
+
+        .close-btn {
             color: $theme_light_black;
 
         }
-        img{
+
+        img {
             max-width: 100px;
-           max-height: 50px;
+            max-height: 50px;
         }
     }
-    .categories-list{
+
+    .categories-list {
         max-width: 240px;
         min-width: 240px;
-        input{
+
+        input {
             padding-top: 0px !important;
             padding-bottom: 0px !important;
         }
-        label{
+
+        label {
             position: relative;
             top: 16px;
         }
 
-     .Mui-focused fieldset {
+        .Mui-focused fieldset {
             border-color: $theme_green !important;
-          }
-          
-          .MuiInputLabel-root{
+        }
+
+        .MuiInputLabel-root {
             color: $theme_green !important;
             @include regular_font();
             font-size: 14px;
-          } 
+        }
     }
-    .ga-search-field-sm{
+
+    .ga-search-field-sm {
         max-width: 240px;
-        
+
         @include regular_font();
         font-size: 14px;
-        input{
+
+        input {
             padding: 9px 0px;
         }
-        label{
+
+        label {
             position: absolute;
             top: -5px;
             font-size: 14px;
             color: $theme_green;
         }
+
         .Mui-focused fieldset {
             border-color: $theme_green !important;
-          }
+        }
     }
-    .MuiAutocomplete-popper{
+
+    .MuiAutocomplete-popper {
         max-width: 100px;
         min-width: 70px;
         overflow-x: hidden;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
         border-bottom-right-radius: 10px;
     }
-    .menu-item{
+
+    .menu-item {
         border-bottom: 1px solid rgba(128, 128, 128, 0.336);
         margin: 0px 10px;
-        
-        svg{
+
+        svg {
             // fill: $theme_green;
         }
-        .menu-text{
 
-            span{
+        .menu-text {
+
+            span {
                 font-size: 15px;
                 @include regular_font();
             }
-            
+
         }
     }
 
-    h3{
+    h3 {
         font-size: 16px;
         @include regular_font();
         text-align: center;
@@ -384,13 +398,15 @@ sans-serif;
         margin-bottom: 0px;
         margin-top: 15px;
     }
+
     .social-icons {
         max-width: fit-content;
         display: flex;
         gap: 10px;
-         min-width: 100%;
+        min-width: 100%;
         padding: 10px;
         justify-content: center;
+
         .icon {
             font-size: 25px;
 
@@ -419,9 +435,9 @@ sans-serif;
         }
 
     }
+
     .search-here,
-    .explore
-    {
+    .explore {
         margin-top: 0px;
         text-align: center;
         // padding-left: 10px;
@@ -431,17 +447,25 @@ sans-serif;
         font-weight: 600;
         font-size: 16px;
     }
-    .explore{
+
+    .explore {
         bottom: 0px;
     }
 
-    
+
 }
-.ga-bottom-nav-menu{
+
+.ga-bottom-nav-menu {
     position: fixed;
     bottom: 0;
     width: 100%;
     z-index: 7;
+
+
+    .MuiBottomNavigationAction-label {
+        @include regular_font();
+        font-size: 10px;
+    }
 }
 
 
@@ -866,6 +890,11 @@ sans-serif;
     .subscribe-col {
         @media (max-width:1200px) {
             padding-right: 20px;
+
+        }
+
+        @media (max-width: 900px) {
+            margin-bottom: 70px;
         }
     }
 
@@ -879,4 +908,199 @@ sans-serif;
 
 .MuiBadge-badge {
     background-color: red !important;
+}
+
+
+
+
+// Home Categories Section
+
+.categories-section {
+    .img-section {
+
+        img {
+            max-width: 100%;
+        }
+
+    }
+
+    .cards-section {
+
+        .collection-head {
+            font-family: $heading_font;
+            font-size: 2rem;
+            text-align: center;
+            font-weight: 700;
+        }
+
+        .subhead {
+            @include regular_font();
+            font-size: 13px;
+            text-align: center;
+            margin: 15px 0px;
+        }
+
+        .card {
+            border: none;
+            // margin: 10px;
+
+            transition: all 0.5s ease;
+
+            .img-area {
+                img {
+                    max-width: 100%;
+                    border: none;
+                }
+
+                .img-front {
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                    opacity: 1;
+                    transition: opacity 0.5s ease;
+                }
+
+                .discount {
+                    background-color: $theme_green;
+                    padding: 3px 10px;
+                    z-index: 2;
+                    position: absolute;
+                    font-size: 12px;
+                    font-family: $secondary_font;
+                    color: white;
+                    font-weight: 700;
+                    right: 0;
+                    border-bottom-left-radius: 10px;
+                }
+            }
+
+            &:hover {
+                .img-area {
+                    .img-front {
+                        opacity: 0;
+                    }
+                }
+            }
+
+            &:hover {
+                cursor: pointer;
+
+                // box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.15);
+                .content {
+                    // padding: 5px;
+
+
+                    .add-cart-price {
+
+                        .add-cart {
+                            opacity: 1;
+                        }
+
+                    }
+
+                }
+
+            }
+
+            .content {
+                @include regular_font();
+
+                .category-name {
+                    font-size: 12px;
+                    color: $theme_light_black;
+                    margin-top: 10px;
+                    font-weight: 700;
+                }
+
+                .product-name {
+                    font-size: 14px;
+                    font-family: $heading_font;
+                    color: $theme_grey_color;
+                    font-weight: 500;
+                }
+
+                .add-cart-price {
+
+                    display: flex;
+                    justify-content: space-between;
+
+                    .product-price {
+                        font-size: 16px;
+                        font-weight: 700;
+                    }
+
+                    .add-cart {
+                        color: $theme_green;
+                        opacity: 0;
+                        transition: opacity 0.5s ease-out;
+                    }
+                }
+
+            }
+
+        }
+    }
+}
+
+.ad-bnr {
+    width: 100%;
+    // border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+// Blogs Section
+.latest-blogs-head{
+    font-family: $heading_font;
+    font-size: 2rem;
+    text-align: center;
+}
+.latest-blogs-para{
+    @include regular_font();
+    font-size: 13px;
+    text-align: center;
+    margin: 15px 0px;
+
+}
+.blog-slider{
+    margin-bottom: 50px;
+.blog-card {
+    margin: 0px 10px;
+
+    .img-area {
+        img {
+            max-width: 100%;
+        }
+    }
+
+    .content {
+        font-family: $secondary_font;
+
+        .category-time {
+            display: flex;
+            justify-content: space-between;
+            margin: 10px 0px;
+            margin-bottom: 0px;
+
+            .category {
+
+                font-size: 16px;
+                color: $theme_light_black;
+
+            }
+
+            .time {
+                font-size: 12px;
+                color: $theme_grey_color;
+            }
+        }
+
+        .title {
+            font-size: 18px;
+        }
+
+        .description {
+            font-size: 13px;
+        }
+    }
+}
 }

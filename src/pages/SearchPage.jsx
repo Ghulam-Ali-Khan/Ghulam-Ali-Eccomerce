@@ -121,10 +121,14 @@ const SearchPage = () => {
         // setWidth(matches);
         setMobileWidth(mobileDevice);
 
-        mobileWidth ? setToggleFilter(true) : setToggleFilter(false)
+        mobileWidth ? setToggleFilter(false) : setToggleFilter(true) 
+
+        console.log(toggleFilter);
 
         //   console.log(matches);
     }, [mobileDevice]);
+
+    console.log(toggleFilter);
 
     return (
         <>
@@ -155,7 +159,7 @@ const SearchPage = () => {
 
                                 </h2>
 {
-    toggleFilter && (
+    (!toggleFilter) && (
         <>
                                 <h3 className='sub-heading'>Categories</h3>
 

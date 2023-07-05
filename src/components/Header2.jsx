@@ -18,6 +18,7 @@ import ExploreOutlinedIcon from '@mui/icons-material/ExploreOutlined';
 import ShoppingBasketOutlinedIcon from '@mui/icons-material/ShoppingBasketOutlined';
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
 import CampaignOutlinedIcon from '@mui/icons-material/CampaignOutlined';
+import TestLogo from "../imgs/comfatra-logo.png";
 const Header2 = () => {
 
     const [valueBottomMenu, setValueBottomMenu] = React.useState(0);
@@ -136,7 +137,7 @@ const Header2 = () => {
 
                                 <div className="row header-top">
                                     <div className="col-lg-3 col-md-3 left-col">
-                                        <img src="src/imgs/comfatra-logo.png" alt="" className='logo' />
+                                        <img src={TestLogo} alt="" className='logo' />
                                     </div>
                                     <div className="col-lg-6 col-md-6 middle-col">
                                         <div className="search">

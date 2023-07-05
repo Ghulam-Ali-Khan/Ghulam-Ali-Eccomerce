@@ -1,5 +1,5 @@
 import React from 'react'
-import { Typography, Card, CardMedia, Box, Paper} from '@mui/material';
+import { Typography, Card, CardMedia, Box, Paper } from '@mui/material';
 import { Link } from 'react-router-dom';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import AddIcon from '@mui/icons-material/Add';
@@ -27,35 +27,35 @@ const ProductCard = (props) => {
           <Typography variant='h6' component='h2' className="title">
             {props.product_name.length < 23 ? (props.product_name) : (props.product_name.slice(0, 23) + "...")}
           </Typography>
-          <Box display="flex" sx={{justifyContent:"space-between", minHeight:"50px",}}>
-          <Box display="flex">
-           
-              
-           
+          <Box display="flex" sx={{ justifyContent: "space-between", minHeight: "50px", }}>
+            <Box display="flex">
 
-            {
 
-            props.price_before != null && props.discount != null && (
-                <Typography variant='h6' component='h2' className="price-before">
-                  {props.currency+' '+ props.price_before}
-                </Typography>
-              )
 
-            }
 
-            <Typography variant='h6' component='h2' className="price-now">
-              {props.currency+' '+ props.price_now}
-            </Typography>
-          </Box>
+              {
 
-          <Paper className='icon-box' elevation={2} display="flex">
+                props.price_before != null && props.discount != null && (
+                  <Typography variant='h6' component='h2' className="price-before">
+                    {props.currency + ' ' + props.price_before}
+                  </Typography>
+                )
 
-<ShoppingCartIcon className='cart-icon'/>
-<AddIcon className='add-icon'/>
-<Typography variant='h6' component='h2' className="add-to-cart">
-Add to Cart
-</Typography>
-          </Paper>
+              }
+
+              <Typography variant='h6' component='h2' className="price-now">
+                {props.currency + ' ' + props.price_now}
+              </Typography>
+            </Box>
+
+            <Paper className='icon-box' elevation={2} display="flex">
+
+              <ShoppingCartIcon className='cart-icon' />
+              <AddIcon className='add-icon' />
+              <Typography variant='h6' component='h2' className="add-to-cart">
+                Add to Cart
+              </Typography>
+            </Paper>
           </Box>
         </Box>
 

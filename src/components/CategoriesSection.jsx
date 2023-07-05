@@ -71,7 +71,7 @@ const CategoriesSection = (props) => {
                                                 <div className="discount">
                                                     20% Off
                                                 </div>
-                                                <img src="src/imgs/sample1.png" alt="" />
+                                                <img src="src/imgs/searched-products.png" alt="" />
                                                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSXy88SWy3C8-nbZY41r80vHJjgqJ52edCEyg" alt="" className='img-front' />
                                             </div>
                                             <div className="content">

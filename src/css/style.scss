@@ -1,60 +1,17 @@
-@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,400;0,500;0,600;0,700;0,900;1,400;1,500;1,600;1,700;1,900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Geologica:wght@400;500;600;700;900&display=swap');
+@import url('./fonts.css');
+@import './utilis.scss';
 
-$theme_white : white;
-$theme_blue : #c7ecee;
-$theme_green : #2ecc71;
-$theme_light_black : #000000c4;
-$theme_footer_black :#101010;
-$theme_grey_color: #767676;
-// Fonts
 
-$secondary_font : 'Raleway',
-sans-serif;
-$heading_font : 'Geologica',
-sans-serif;
 
 * {
     padding: 0;
     margin: 0;
 }
-
-@mixin common_btn($bg, $color: white) {
-
-    padding: 10px 20px;
-    background-color: $bg;
-    border-radius: 30px;
-    color: $color;
-
+body{
+    overflow-x: hidden;
 }
-
-@mixin adjust_input_height {
-    input {
-        padding: 9px 5px;
-    }
-
-    label {
-        position: absolute;
-        top: -5px;
-        font-size: 14px;
-        color: $theme_green;
-    }
-}
-
-@mixin m_common_btn($bg, $color: white) {
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
-    padding: 10px;
-    background-color: $bg;
-    border-radius: 50%;
-
-    color: $color;
-
-}
-
-@mixin regular_font() {
-    font-weight: 500;
-    font-family: $secondary_font;
-
+html{
+    overflow-x: hidden;
 }
 
 .heading-styled {
@@ -1280,6 +1237,18 @@ sans-serif;
                 @include regular_font();
 
                 .img-area {
+
+                    .discount{
+                        background: $theme_green;
+            color: white;
+            @include regular_font();
+            position: absolute;
+            padding: 5px;
+            right: 0;
+            border-bottom-left-radius: 12px;
+            z-index: 2;
+            
+                    }
                     img {
                         width: 100%;
                     }
@@ -1290,6 +1259,7 @@ sans-serif;
                         left: 0;
                         width: 0;
                         opacity: 0;
+                        z-index: 1;
                         transition: all 0.5s ease-out;
                     }
                 }
@@ -1360,4 +1330,13 @@ sans-serif;
             }
         }
     }
+}
+
+
+// Detail Product Page 
+
+.product-detail-page {
+
+    margin: 3rem 0rem;
+
 }

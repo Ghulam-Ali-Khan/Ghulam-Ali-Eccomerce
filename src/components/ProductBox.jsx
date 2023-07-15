@@ -1,7 +1,7 @@
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import { IconButton, Rating } from '@mui/material';
 import React, { useState, useEffect } from 'react';
-import TestIMG1 from '../imgs/searched-products.png';
+import TestIMG1 from '../imgs/testsingle1.png';
 import TestIMG2 from '../imgs/searched-products1.png';
 
 const ProductBox = (props) => {
@@ -15,6 +15,9 @@ const ProductBox = (props) => {
 
             <div className="product-card">
                 <div className="img-area">
+                    <div className="discount">
+                        Sale
+                    </div>
                     <img src={TestIMG1} alt="" />
                     <img src={TestIMG2} alt="" className='changed-img' />
                 </div>

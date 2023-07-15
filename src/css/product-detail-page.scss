@@ -1,0 +1,313 @@
+@import url('./fonts.css');
+@import './utilis.scss';
+
+.product-detail-page {
+
+  .productImg{
+    width: 100%;
+    margin-bottom: 15px;
+  }
+    .images-section{
+
+
+        img {
+            vertical-align: middle;
+            width: 100%;
+          }
+          
+          /* Position the image container (needed to position the left and right arrows) */
+          .product-container {
+            position: relative;
+          }
+          
+          /* Hide the images by default */
+          .mySlides {
+            display: none;
+          }
+          
+          /* Add a pointer when hovering over the thumbnail images */
+          .cursor {
+            cursor: pointer;
+          }
+          
+          /* Next & previous buttons */
+          .prev,
+          .next {
+            cursor: pointer;
+            position: absolute;
+            top: 40%;
+            width: auto;
+            padding: 16px;
+            margin-top: -50px;
+            color: white;
+            font-weight: bold;
+            font-size: 20px;
+            border-radius: 0 3px 3px 0;
+            user-select: none;
+            -webkit-user-select: none;
+            text-decoration: none;
+          }
+          
+          /* Position the "next button" to the right */
+          .next {
+            right: 0;
+            border-radius: 3px 0 0 3px;
+          }
+          
+          /* On hover, add a black background color with a little bit see-through */
+          .prev:hover,
+          .next:hover {
+            background-color: rgba(0, 0, 0, 0.459);
+          }
+          
+          /* Number text (1/3 etc) */
+          .numbertext {
+            color: #f2f2f2;
+            font-size: 12px;
+            padding: 8px 12px;
+            position: absolute;
+            top: 0;
+          }
+          
+          /* Container for image text */
+          .caption-container {
+            text-align: center;
+            background-color: #222;
+            padding: 2px 16px;
+            color: white;
+          }
+          
+          .row:after {
+            content: "";
+            display: table;
+            clear: both;
+          }
+          
+          /* Six columns side by side */
+          .column {
+            float: left;
+            width: 16.66%;
+          }
+          
+          /* Add a transparency effect for thumnbail images */
+          .demo {
+            opacity: 0.6;
+          }
+          
+          .active,
+          .demo:hover {
+            opacity: 1;
+          }
+          
+
+
+    }
+    .content-section{
+        @include regular_font();
+
+        .title{
+            font-family: $heading_font;
+            color: $theme_footer_black;
+            font-size:1.8rem;
+        }
+        .rating-section{
+            display: flex;
+            gap: 10px;
+            p{
+              font-size: 15px; 
+              color: $theme_light_black; 
+            }
+            
+        }
+        .price-section{
+            font-family: $price-font;
+            color: $theme_footer_black;
+            h3{
+                font-weight: 400;
+                font-size: 1.7rem;
+                span{
+                    font-weight: 700;
+                }
+            }
+        }
+        .quantity-section{
+            margin:20px 0px;
+
+            h3{
+                font-family: $heading_font;
+                font-size: 15px;
+            }
+
+            .inc-dec{
+                font-family: $price-font;
+                display: flex;
+
+                button{
+                    // padding: 0px 10px;
+                    font-size: 20px;
+                    height: 35px;
+                    width: 35px;
+                    border: 1px solid $theme_grey_color;
+                    background-color: $theme_white;
+                    
+                }
+                p{
+                    // padding: 0px 10px;
+                    font-size: 18px;
+                    text-align: center;
+                    min-height: 35px;
+                    min-width: 35px;
+                    display: flex;
+                    align-items: center;
+                    padding: 0px 10px;
+                }
+            }
+
+        }
+        .category-section{
+            margin-top: 20px;
+            .head{
+                font-family: $heading_font;
+                font-size: 15px;
+            }
+            .title{
+                font-family: $secondary_font;
+                font-size: 18px;
+                color: $theme_footer_black;
+            }
+        }
+        .buy-addcart-btns{
+            button{
+                width: 100%;
+                font-family: $secondary_font;
+
+                @media (max-width:995px) {
+                  margin-top: 20px;
+                }
+            }
+            .buynow{
+                background-color: $theme_white;
+                color: $theme_footer_black;
+            }
+            .addcart{
+                background-color: $theme_green;
+            }
+        }
+    }
+}
+
+.relevant-product-slider{
+  // margin: 3rem 0rem;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+
+  .relevant-products-head{
+    font-family: $heading_font;
+    margin-left: 10px;
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+  }
+  
+
+  .product-card {
+
+    max-width: 100%;
+    // background-color: red;
+    @include regular_font();
+    margin: 0px 10px;
+    .img-area {
+
+        .discount{
+            background: $theme_green;
+color: white;
+@include regular_font();
+position: absolute;
+padding: 5px;
+right: 0;
+border-bottom-left-radius: 12px;
+z-index: 2;
+
+        }
+        img {
+            width: 100%;
+        }
+
+        .changed-img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            opacity: 0;
+            z-index: 1;
+            transition: all 0.5s ease-out;
+            // max-width: 100px;
+        }
+    }
+
+
+    .content {
+        .category-rating-area {
+            margin-top: 10px;
+            display: flex;
+            justify-content: space-between;
+
+            .category {
+                font-size: 13px;
+                color: $theme_light_black;
+                font-weight: 700;
+            }
+
+            .rating {
+                font-size: 12px;
+            }
+        }
+
+        .title {
+            font-size: 16px;
+            font-family: $heading_font;
+            color: $theme_grey_color;
+        }
+
+        .cart-price-area {
+            display: flex;
+            justify-content: space-between;
+            
+            .price {
+                font-size: 16px;
+                font-weight: 700;
+            }
+
+            .add-cart {
+                color: $theme_green;
+                cursor: pointer;
+                opacity: 0;
+                transition: opacity 0.5s ease-out;
+                @media (max-width:1000px) {
+                    opacity: 1;
+                }
+            }
+        }
+    }
+
+    &:hover {
+
+        .img-area {
+            .changed-img {
+                opacity: 0;
+                // width: 100%;
+            }
+        }
+
+        .content {
+            .cart-price-area {
+                .add-cart {
+                    opacity: 1;
+                }
+            }
+        }
+    }
+
+}
+}
+
+

@@ -112,7 +112,7 @@ const SearchPage = () => {
 
     const mobileDevice = useMediaQuery('(max-width: 1000px)');
     const [mobileWidth, setMobileWidth] = useState(null);
-    const [toggleFilter, setToggleFilter] = useState(false);
+    const [toggleFilter, setToggleFilter] = useState(!mobileDevice);
 
 
     useEffect(() => {
@@ -121,14 +121,14 @@ const SearchPage = () => {
         // setWidth(matches);
         setMobileWidth(mobileDevice);
 
-        mobileWidth ? setToggleFilter(false) : setToggleFilter(true) 
+        setToggleFilter(!mobileDevice);
 
-        console.log(toggleFilter);
+        console.log("Filter 1 value :",toggleFilter, " Mobile Width :", mobileWidth);
 
         //   console.log(matches);
     }, [mobileDevice]);
 
-    console.log(toggleFilter);
+    console.log("Filter 2 value :",toggleFilter, " Mobile Width :", mobileWidth);
 
     return (
         <>
@@ -159,7 +159,7 @@ const SearchPage = () => {
 
                                 </h2>
 {
-    (!toggleFilter) && (
+    (toggleFilter) && (
         <>
                                 <h3 className='sub-heading'>Categories</h3>
 

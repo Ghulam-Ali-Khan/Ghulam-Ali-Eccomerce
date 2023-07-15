@@ -11,6 +11,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import SearchPage from './pages/SearchPage';
+import DetailPage from './pages/DetailPage';
 const App = () => {
 
 
@@ -22,7 +23,9 @@ const App = () => {
       
 
 {/* <Home/> */}
-<SearchPage/>
+{/* <SearchPage/> */}
+<DetailPage/>
+
 
 <Footer/>
     </div>

@@ -55,33 +55,7 @@ const Sidebar = () => {
                                     <li   className="nav-item">
                                         <a href="apps-chat.html"   className="nav-link" data-key="t-chat"> Chat </a>
                                     </li>
-                                    <li   className="nav-item">
-                                        <a href="#sidebarEmail"   className="nav-link" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarEmail" data-key="t-email">
-                                            Email
-                                        </a>
-                                        <div   className="collapse menu-dropdown" id="sidebarEmail">
-                                            <ul   className="nav nav-sm flex-column">
-                                                <li   className="nav-item">
-                                                    <a href="apps-mailbox.html"   className="nav-link" data-key="t-mailbox"> Mailbox </a>
-                                                </li>
-                                                <li   className="nav-item">
-                                                    <a href="#sidebaremailTemplates"   className="nav-link" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebaremailTemplates" data-key="t-email-templates">
-                                                        Email Templates
-                                                    </a>
-                                                    <div   className="collapse menu-dropdown" id="sidebaremailTemplates">
-                                                        <ul   className="nav nav-sm flex-column">
-                                                            <li   className="nav-item">
-                                                                <a href="apps-email-basic.html"   className="nav-link" data-key="t-basic-action"> Basic Action </a>
-                                                            </li>
-                                                            <li   className="nav-item">
-                                                                <a href="apps-email-ecommerce.html"   className="nav-link" data-key="t-ecommerce-action"> Ecommerce Action </a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </li>
+                                    
 
                                     
                                 </ul>
@@ -89,26 +63,24 @@ const Sidebar = () => {
                         </li>
 
                         <li   className="nav-item">
-                            <a   className="nav-link menu-link" href="#sidebarLayouts" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarLayouts">
-                                <i   className="ri-layout-3-line"></i> <span data-key="t-layouts">Layouts</span> <span   className="badge badge-pill bg-danger" data-key="t-hot">Hot</span>
+                            <a   className="nav-link menu-link" href="#sidebarApps" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarApps">
+                                <i   className="ri-apps-2-line"></i> <span data-key="t-apps">Categories</span>
                             </a>
-                            <div   className="collapse menu-dropdown" id="sidebarLayouts">
+                            <div   className="collapse menu-dropdown" id="sidebarApps">
                                 <ul   className="nav nav-sm flex-column">
                                     <li   className="nav-item">
-                                        <a href="layouts-horizontal.html" target="_blank"   className="nav-link" data-key="t-horizontal">Horizontal</a>
+                                        <Link to="/dashboard/add-product"   className="nav-link" data-key="t-calendar"> Create Category </Link>
                                     </li>
                                     <li   className="nav-item">
-                                        <a href="layouts-detached.html" target="_blank"   className="nav-link" data-key="t-detached">Detached</a>
+                                        <a href="apps-chat.html"   className="nav-link" data-key="t-chat"> Chat </a>
                                     </li>
-                                    <li   className="nav-item">
-                                        <a href="layouts-two-column.html" target="_blank"   className="nav-link" data-key="t-two-column">Two Column</a>
-                                    </li>
-                                    <li   className="nav-item">
-                                        <a href="layouts-vertical-hovered.html" target="_blank"   className="nav-link" data-key="t-hovered">Hovered</a>
-                                    </li>
+                                    
+
+                                    
                                 </ul>
                             </div>
-                        </li> 
+                        </li>
+
 
                  
 

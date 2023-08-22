@@ -16,6 +16,9 @@ import { Route, Routes, useLocation } from 'react-router-dom';
 import Layout from "./dashboard/Layout";
 import DashHome from './dashboard/pages/DashHome';
 import AddProduct from './dashboard/pages/AddProduct';
+import AddCategorey from './dashboard/pages/AddCategorey';
+import ViewProducts from './dashboard/pages/ViewProducts';
+import AddBlog from './dashboard/pages/AddBlog';
 const App = () => {
 
   const location = useLocation();
@@ -38,6 +41,9 @@ const App = () => {
         <Route path='/dashboard' element={<Layout />}>
           <Route path='.' element={<DashHome />} />
           <Route path='add-product' element={<AddProduct/>} />
+          <Route path='add-category' element={<AddCategorey/>} />
+          <Route path='view-product' element={<ViewProducts/>} />
+          <Route path='add-blog' element={<AddBlog/>} />
         </Route>
       </Routes>
 

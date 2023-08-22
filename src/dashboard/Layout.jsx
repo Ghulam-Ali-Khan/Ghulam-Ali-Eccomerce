@@ -1,5 +1,6 @@
 import React,{useEffect} from 'react'
 import Header from './components/Header'
+import "./css/dashboard.css";
 // import "./assets/libs/jsvectormap/css/jsvectormap.min.css";
 // import "./assets/libs/swiper/swiper-bundle.min.css";
 // import "./assets/js/layout.js";

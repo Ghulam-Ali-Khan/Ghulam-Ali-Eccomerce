@@ -1,3 +1,21 @@
 .quill .ql-container {
   min-height: 200px;
+}
+
+.graph-text-label {
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding-bottom: 1rem;
+}
+.graph-text-label h6 {
+  margin: 0;
+}
+.graph-text-label .icon {
+  color: #02d5d1;
+}
+
+.crud-submit-btns {
+  background-color: #1a73e8;
 }/*# sourceMappingURL=dashboard.css.map */

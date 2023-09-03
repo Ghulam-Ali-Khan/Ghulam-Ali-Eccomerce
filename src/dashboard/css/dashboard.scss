@@ -1,8 +1,26 @@
-
-
+$dash_green : #02d5d1;
+$dash_blue: #1a73e8;
 
 .quill {
     .ql-container{
         min-height: 200px;
     }
+}
+
+.graph-text-label{
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding-bottom: 1rem;
+    h6{
+        margin: 0;
+    }
+    .icon{
+        color: $dash_green;
+    }
+}
+
+.crud-submit-btns{
+   background-color: $dash_blue;
 }

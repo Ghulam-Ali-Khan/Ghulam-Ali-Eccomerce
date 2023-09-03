@@ -19,6 +19,8 @@ import AddProduct from './dashboard/pages/AddProduct';
 import AddCategorey from './dashboard/pages/AddCategorey';
 import ViewProducts from './dashboard/pages/ViewProducts';
 import AddBlog from './dashboard/pages/AddBlog';
+import AddSlider from './dashboard/pages/AddSlider';
+import TempDashHome from './dashboard/pages/TempDashHome';
 const App = () => {
 
   const location = useLocation();
@@ -39,11 +41,12 @@ const App = () => {
         <Route path='/search-page' element={<SearchPage />} />
         <Route path='/detail-page' element={<DetailPage />} />
         <Route path='/dashboard' element={<Layout />}>
-          <Route path='.' element={<DashHome />} />
+          <Route path='home' element={< DashHome/>} exact />
           <Route path='add-product' element={<AddProduct/>} />
           <Route path='add-category' element={<AddCategorey/>} />
           <Route path='view-product' element={<ViewProducts/>} />
           <Route path='add-blog' element={<AddBlog/>} />
+          <Route path='add-slider' element={<AddSlider/>} />
         </Route>
       </Routes>
 

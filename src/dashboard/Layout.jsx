@@ -21,7 +21,7 @@ import "./css/dashboard.css";
 // import "./assets/js/pages/dashboard-ecommerce.init.js";
 // import "./assets/js/app.js";
 import Sidebar from './components/Sidebar';
-import Home from './pages/DashHome';
+import DashHome from './pages/DashHome';
 import { Outlet } from 'react-router-dom';
 
 const Layout = () => {

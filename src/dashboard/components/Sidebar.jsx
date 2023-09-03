@@ -113,7 +113,7 @@ const Sidebar = () => {
               <div className="collapse menu-dropdown" id="sliderContent">
                 <ul className="nav nav-sm flex-column">
                   <li className="nav-item">
-                    <Link to="/dashboard/add-category" className="nav-link" data-key="t-calendar"> Add Slide </Link>
+                    <Link to="/dashboard/add-slider" className="nav-link" data-key="t-calendar"> Add Slide </Link>
                   </li>
                   <li className="nav-item">
                     <a href="apps-chat.html" className="nav-link" data-key="t-chat"> View Slides</a>

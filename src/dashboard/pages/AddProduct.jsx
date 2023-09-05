@@ -5,7 +5,7 @@ import AddCircleIcon from '@mui/icons-material/AddCircle';
 
 
 const AddProduct = () => {
-const formData = new FormData();
+    const formData = new FormData();
 
     const [addDiscount, setAddDiscount] = useState(null);
     const [responseMsg, setResponseMsg] = useState({
@@ -22,7 +22,7 @@ const formData = new FormData();
         purchasePrice: 0,
         quantity: 0,
         category: null,
-        
+
         metaTitle: null,
         metaDescription: null,
         metaKeywords: null,
@@ -94,15 +94,22 @@ const formData = new FormData();
 
     }
 
-    const updateFiles = async(e) => {
+    const updateFiles = async (e) => {
 
+        console.log('Field Name:', e.target.name);
+       console.log('Selected Files:', e.target.files);
 
         const files = e.target.files;
-  // Append all files to the same field in formData
-  for (let i = 0; i < files.length; i++) {
-   await formData.append(e.target.name, files[i]);
-  }
 
+
+        for (let i = 0; i < files.length; i++) {
+            // Use the correct field names here ('cardImages' and 'bannerImages')
+            if (e.target.name === 'cardImages') {
+                formData.append('cardImages', files[i]);
+            } else if (e.target.name === 'bannerImages') {
+                formData.append('bannerImages', files[i]);
+            }
+        }
 
         // setProductDetails((prevObj) => ({
         //     ...prevObj,
@@ -113,15 +120,27 @@ const formData = new FormData();
 
 
     const createProduct = async () => {
+
+
       
 
+
         const keys = Object.keys(productDetails);
+
+        console.log(keys);
+
+
 
         // Use map to append key-value pairs to FormData
         await keys.forEach((key) => {
             formData.append(key, productDetails[key]);
         });
 
+        
+        console.log(formData.get('cardImages')); // Check if it contains file data
+        console.log(formData.get('bannerImages')); // Check if it contains file data
+        
+        
         await axios.post("http://localhost:5000/api/add-product", formData, {
             headers: {
                 "Content-Type": "multipart/form-data",
@@ -145,8 +164,8 @@ const formData = new FormData();
                         color: "success"
                     }));
 
-                    setProductDetails(prevObj => ({
-                        ...prevObj,
+                    setProductDetails({
+
                         name: "",
                         description: "",
                         price: 0,
@@ -155,12 +174,12 @@ const formData = new FormData();
                         purchasePrice: 0,
                         quantity: 0,
                         category: "",
-                        cardImages: null,
-                        bannerImages: null,
+                        cardImages: "",
+                        bannerImages: "",
                         metaTitle: "",
                         metaDescription: "",
                         metaKeywords: "",
-                    }));
+                    });
 
                     scrollToTop();
 

@@ -8,7 +8,7 @@ import SliderCraousal from '../components/SliderCraousal';
 const CategoriesSection = lazy(() => import('../components/CategoriesSection'));
 import Slider from "react-slick";
 // import BlogCard from '../components/BlogCard';
-
+import axios from 'axios';
 const BlogCard = lazy(() => import('../components/BlogCard'));
 
 const Home = () => {
@@ -105,7 +105,7 @@ const Home = () => {
 
   const [showProducts, setShowProducts] = useState(2);
 
-
+  
 
 
   return (
@@ -116,11 +116,11 @@ const Home = () => {
       </Typography> */}
 
       <div className="container" style={{marginTop:"20px"}}>
-        <CategoriesSection sectionDirection={false} />
+        <CategoriesSection sectionDirection={false} category="name" />
 
         <img src="https://htmldemo.net/reid/reid/assets/img/bg/banner3.jpg" alt="" className='ad-bnr' />
 
-        <CategoriesSection sectionDirection={true} />
+        <CategoriesSection sectionDirection={true} category="name" />
 
 
 

@@ -102,6 +102,7 @@ const AddProduct = () => {
     // Use map to append key-value pairs to FormData
     keys.forEach((key) => {
       if (key == "cardImages" || key == "bannerImages") {
+        
         productDetails[key].forEach((file) => {
           formData.append(key, file);
         });
@@ -139,8 +140,8 @@ const AddProduct = () => {
             purchasePrice: 0,
             quantity: 0,
             category: "",
-            cardImages: "",
-            bannerImages: "",
+            cardImages: [],
+            bannerImages: [],
             metaTitle: "",
             metaDescription: "",
             metaKeywords: "",

@@ -70,27 +70,33 @@ const AddProduct = () => {
     }));
   };
 
-  const updateFiles = async (e) => {
-    const files = e.target.files;
+const updateFiles =  (e) => {
+  
+  console.log("updateFiles function called");
+  const files = e.target.files;
 
-    // Create new arrays to update state
-    const updatedCardImages = [...productDetails.cardImages];
-    const updatedBannerImages = [...productDetails.bannerImages];
+  // Create new arrays to update state
+  const updatedCardImages = [...productDetails.cardImages];
+  const updatedBannerImages = [...productDetails.bannerImages];
 
-    for (let i = 0; i < files.length; i++) {
-      if (e.target.name === "cardImages") {
-        updatedCardImages.push(files[i]);
-      } else if (e.target.name === "bannerImages") {
-        updatedBannerImages.push(files[i]);
-      }
+  for (let i = 0; i < files.length; i++) {
+    if (e.target.name === "cardImages") {
+      updatedCardImages.push(files[i]);
+    } else if (e.target.name === "bannerImages") {
+      updatedBannerImages.push(files[i]);
     }
+  }
 
-    setProductDetails((prevObj) => ({
-      ...prevObj,
-      cardImages: updatedCardImages,
-      bannerImages: updatedBannerImages,
-    }));
-  };
+  console.log("Updated cardImages:", updatedCardImages);
+  console.log("Updated bannerImages:", updatedBannerImages);
+
+  setProductDetails((prevObj) => ({
+    ...prevObj,
+    cardImages: updatedCardImages,
+    bannerImages: updatedBannerImages,
+  }));
+};
+
 
   const createProduct = async () => {
     const formData = new FormData();
@@ -140,8 +146,8 @@ const AddProduct = () => {
             purchasePrice: 0,
             quantity: 0,
             category: "",
-            cardImages: [],
-            bannerImages: [],
+            cardImages:[],
+            bannerImages:[],
             metaTitle: "",
             metaDescription: "",
             metaKeywords: "",
@@ -216,6 +222,7 @@ const AddProduct = () => {
                       placeholder="Enter name"
                       name="name"
                       onChange={updateValues}
+                      value={productDetails.name}
                     />
                   </div>
                 </div>
@@ -247,6 +254,7 @@ const AddProduct = () => {
                       rows="3"
                       name="description"
                       onChange={updateValues}
+                        value={productDetails.description}
                     ></textarea>
                   </div>
                 </div>
@@ -271,6 +279,7 @@ const AddProduct = () => {
                       id="productRetailPrice"
                       placeholder="Enter Price"
                       name="purchasePrice"
+                     
                     />
                   </div>
                 </div>
@@ -323,7 +332,7 @@ const AddProduct = () => {
                       class="form-control"
                       id="productCardImgs"
                       name="cardImages"
-                      onChange={updateFiles}
+                      onInput={updateFiles} 
                       multiple
                     />
                   </div>
@@ -336,7 +345,7 @@ const AddProduct = () => {
                       class="form-control"
                       id="productDetailImgs"
                       name="bannerImages"
-                      onChange={updateFiles}
+                      onInput={updateFiles} 
                       multiple
                     />
                   </div>
@@ -377,6 +386,7 @@ const AddProduct = () => {
                       placeholder="Enter Quantity"
                       name="quantity"
                       onChange={updateValues}
+                      value={productDetails.quantity}
                     />
                   </div>
                 </div>
@@ -409,6 +419,7 @@ const AddProduct = () => {
                           id="discountPercentage"
                           placeholder="Enter Discount Percentage"
                           name="discount"
+                          
                         />
                       </div>
                     </div>
@@ -444,6 +455,7 @@ const AddProduct = () => {
                       placeholder="Enter Meta"
                       name="metaTitle"
                       onChange={updateValues}
+                      value={productDetails.metaTitle}
                     />
                   </div>
                 </div>
@@ -457,6 +469,7 @@ const AddProduct = () => {
                       placeholder="Enter Tags"
                       name="metaKeywords"
                       onChange={updateValues}
+                      value={productDetails.metaKeywords}
                     />
                   </div>
                 </div>
@@ -470,6 +483,7 @@ const AddProduct = () => {
                       rows="3"
                       name="metaDescription"
                       onChange={updateValues}
+                      value={productDetails.metaDescription}
                     ></textarea>
                   </div>
                 </div>

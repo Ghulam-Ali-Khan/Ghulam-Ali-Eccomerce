@@ -21,6 +21,7 @@ import ViewProducts from './dashboard/pages/ViewProducts';
 import AddBlog from './dashboard/pages/AddBlog';
 import AddSlider from './dashboard/pages/AddSlider';
 import TempDashHome from './dashboard/pages/TempDashHome';
+import UpdateHeader from './dashboard/pages/UpdateHeader';
 const App = () => {
 
   const location = useLocation();
@@ -47,6 +48,7 @@ const App = () => {
           <Route path='view-product' element={<ViewProducts/>} />
           <Route path='add-blog' element={<AddBlog/>} />
           <Route path='add-slider' element={<AddSlider/>} />
+          <Route path='component-header' element={<UpdateHeader/>}/>
         </Route>
       </Routes>
 

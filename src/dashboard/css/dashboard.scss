@@ -1,5 +1,7 @@
 $dash_green : #02d5d1;
 $dash_blue: #1a73e8;
+$dash_dark_green :#2e9900;
+$dash_red:  rgb(243, 3, 3);
 
 .quill {
     .ql-container{
@@ -23,4 +25,20 @@ $dash_blue: #1a73e8;
 
 .crud-submit-btns{
    background-color: $dash_blue;
+}
+
+.add-btn-green {
+   color: $dash_dark_green !important;
+    
+}
+.border-card{
+    border: 1px solid $dash_dark_green;
+    border-radius: 10px;
+    padding: 15px;
+    transform: translateX(0.7rem);
+    margin: 15px auto;
+}
+.red-btn-color{
+    color: $dash_red !important;
+    margin-top: 10px;
 }

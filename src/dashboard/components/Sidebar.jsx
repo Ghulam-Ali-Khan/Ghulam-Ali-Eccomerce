@@ -41,9 +41,9 @@ const Sidebar = () => {
             <li className="menu-title"><span data-key="t-menu">Menu</span></li>
 
             <li className="nav-item">
-              <a className="nav-link menu-link" href="#sidebarDashboards">
+              <Link className="nav-link menu-link" to="/dashboard/home">
                 <DashboardIcon/> <span data-key="t-dashboards">Dashboards</span>
-              </a>
+              </Link>
             </li>
 
             <li className="nav-item">
@@ -240,7 +240,7 @@ const Sidebar = () => {
                 <ul className="nav nav-sm flex-column">
                  
                   <li className="nav-item">
-                    <a href="apps-chat.html" className="nav-link" data-key="t-chat"> Header </a>
+                    <Link to="/dashboard/component-header" className="nav-link" data-key="t-chat"> Header </Link>
                   </li>
                 </ul>
               </div>

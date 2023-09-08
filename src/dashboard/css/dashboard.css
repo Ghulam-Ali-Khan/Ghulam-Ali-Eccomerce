@@ -18,4 +18,21 @@
 
 .crud-submit-btns {
   background-color: #1a73e8;
+}
+
+.add-btn-green {
+  color: #2e9900 !important;
+}
+
+.border-card {
+  border: 1px solid #2e9900;
+  border-radius: 10px;
+  padding: 15px;
+  transform: translateX(0.7rem);
+  margin: 15px auto;
+}
+
+.red-btn-color {
+  color: rgb(243, 3, 3) !important;
+  margin-top: 10px;
 }/*# sourceMappingURL=dashboard.css.map */

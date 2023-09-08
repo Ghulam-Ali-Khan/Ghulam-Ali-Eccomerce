@@ -1,10 +1,14 @@
 import { Button } from '@mui/material'
-import React, { useState } from 'react'
+import axios from 'axios';
+import React, { useEffect, useState } from 'react'
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 const AddBlog = () => {
 
     const [addDiscount, setAddDiscount] = useState(null);
+
+    const [fetchedCategories, setFetchedCategories] = useState([]);
+
 
     const [priceCalculations, setPriceCalculations] = useState({
 
@@ -17,6 +21,23 @@ const AddBlog = () => {
 
     });
 
+    useEffect(()=>{
+
+        axios.get("http://127.0.0.1:5000/api/fetch-categories",{
+            params:{
+                type:"blog",
+            }
+        })
+        .then((response)=>{
+            console.log('category', response.data.data);
+
+            setFetchedCategories(response.data.data);
+        })
+        .catch(error=>{
+            console.log(`Error ${error}`);
+        })
+
+    },[])
 
 
 
@@ -41,11 +62,15 @@ const AddBlog = () => {
                                     <div class="form-group">
                                         <label for="productCategory">Category</label>
                                         <select class="form-control" id="productCategory">
-                                            <option>1</option>
-                                            <option>2</option>
-                                            <option>3</option>
-                                            <option>4</option>
-                                            <option>5</option>
+                                            <option>Choose one option</option>
+                                           
+                                           {
+                                            fetchedCategories.map(item=>(
+                                                <option value={item._id}>{item?.name}</option>
+                                            ))
+                                           }
+
+
                                         </select>
                                     </div>
                                 </div>

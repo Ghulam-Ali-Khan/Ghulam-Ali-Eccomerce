@@ -45,7 +45,15 @@ const AddProduct = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/api/fetch-categories")
+      .get(
+        "http://localhost:5000/api/fetch-categories",
+
+        {
+          params: {
+            type: "product", // Send 'type' as a query parameter
+          },
+        }
+      )
       .then((response) => {
         console.log(response.data.data);
 
@@ -70,45 +78,40 @@ const AddProduct = () => {
     }));
   };
 
-const updateFiles =  (e) => {
-  
-  console.log("updateFiles function called");
-  const files = e.target.files;
+  const updateFiles = (e) => {
+    console.log("updateFiles function called");
+    const files = e.target.files;
 
-  // Create new arrays to update state
-  const updatedCardImages = [...productDetails.cardImages];
-  const updatedBannerImages = [...productDetails.bannerImages];
+    // Create new arrays to update state
+    const updatedCardImages = [...productDetails.cardImages];
+    const updatedBannerImages = [...productDetails.bannerImages];
 
-  for (let i = 0; i < files.length; i++) {
-    if (e.target.name === "cardImages") {
-      updatedCardImages.push(files[i]);
-    } else if (e.target.name === "bannerImages") {
-      updatedBannerImages.push(files[i]);
+    for (let i = 0; i < files.length; i++) {
+      if (e.target.name === "cardImages") {
+        updatedCardImages.push(files[i]);
+      } else if (e.target.name === "bannerImages") {
+        updatedBannerImages.push(files[i]);
+      }
     }
-  }
 
-  console.log("Updated cardImages:", updatedCardImages);
-  console.log("Updated bannerImages:", updatedBannerImages);
+    console.log("Updated cardImages:", updatedCardImages);
+    console.log("Updated bannerImages:", updatedBannerImages);
 
-  setProductDetails((prevObj) => ({
-    ...prevObj,
-    cardImages: updatedCardImages,
-    bannerImages: updatedBannerImages,
-  }));
-};
-
+    setProductDetails((prevObj) => ({
+      ...prevObj,
+      cardImages: updatedCardImages,
+      bannerImages: updatedBannerImages,
+    }));
+  };
 
   const createProduct = async () => {
     const formData = new FormData();
 
     const keys = Object.keys(productDetails);
 
- 
-
     // Use map to append key-value pairs to FormData
     keys.forEach((key) => {
       if (key == "cardImages" || key == "bannerImages") {
-        
         productDetails[key].forEach((file) => {
           formData.append(key, file);
         });
@@ -116,9 +119,7 @@ const updateFiles =  (e) => {
         formData.append(key, productDetails[key]);
       }
     });
-   
 
-  
     await axios
       .post("http://localhost:5000/api/add-product", formData, {
         headers: {
@@ -146,8 +147,8 @@ const updateFiles =  (e) => {
             purchasePrice: 0,
             quantity: 0,
             category: "",
-            cardImages:[],
-            bannerImages:[],
+            cardImages: [],
+            bannerImages: [],
             metaTitle: "",
             metaDescription: "",
             metaKeywords: "",
@@ -254,7 +255,7 @@ const updateFiles =  (e) => {
                       rows="3"
                       name="description"
                       onChange={updateValues}
-                        value={productDetails.description}
+                      value={productDetails.description}
                     ></textarea>
                   </div>
                 </div>
@@ -279,7 +280,6 @@ const updateFiles =  (e) => {
                       id="productRetailPrice"
                       placeholder="Enter Price"
                       name="purchasePrice"
-                     
                     />
                   </div>
                 </div>
@@ -332,7 +332,7 @@ const updateFiles =  (e) => {
                       class="form-control"
                       id="productCardImgs"
                       name="cardImages"
-                      onInput={updateFiles} 
+                      onInput={updateFiles}
                       multiple
                     />
                   </div>
@@ -345,7 +345,7 @@ const updateFiles =  (e) => {
                       class="form-control"
                       id="productDetailImgs"
                       name="bannerImages"
-                      onInput={updateFiles} 
+                      onInput={updateFiles}
                       multiple
                     />
                   </div>
@@ -419,7 +419,6 @@ const updateFiles =  (e) => {
                           id="discountPercentage"
                           placeholder="Enter Discount Percentage"
                           name="discount"
-                          
                         />
                       </div>
                     </div>

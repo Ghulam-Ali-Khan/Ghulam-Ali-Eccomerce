@@ -45,6 +45,15 @@ const UpdateHeader = () => {
       .get("http://localhost:5000/api/fetched-header")
       .then((response) => {
         console.log(response.data);
+
+
+
+        
+        
+     
+
+        console.log(response.data.data[0]);
+
         setHeaderDetails(response.data.data[0]);
       })
       .catch((error) => {
@@ -54,6 +63,10 @@ const UpdateHeader = () => {
 
 
   const updateValues = (e) => {
+
+    console.log("Change Alert : "+ e.target.value);
+
+
     const updatedDetails = {
       ...headerDetails,
       [e.target.name]: e.target.value,
@@ -92,10 +105,10 @@ const UpdateHeader = () => {
     keys.forEach((key) => {
       if (key === "social") {
         const socialArray = headerDetails.social.map((socialObj) =>
-          JSON.stringify(socialObj)
+        formData.append(key+'[]', JSON.stringify(socialObj))
         );
   
-        formData.append(key, socialArray);
+        
 
       } else {
         formData.append(key, headerDetails[key]);
@@ -168,25 +181,18 @@ const UpdateHeader = () => {
   };
 
   const createSocial = () => {
-    let tempHeaderDetails = headerDetails.social;
-
-    console.log("tempHeaderDetails : ", tempHeaderDetails);
-
-    const obj = {
+    const newSocialObject = {
       name: "",
       icon: null,
       url: "",
     };
-
-    tempHeaderDetails.push(obj);
-
-    console.log("newHeaderDetails : ", tempHeaderDetails);
-
-    setHeaderDetails((prevObj) => ({
-      ...prevObj,
-      social: tempHeaderDetails,
+  
+    setHeaderDetails((prev) => ({
+      ...prev,
+      social: [...prev.social, newSocialObject],
     }));
   };
+  
 
   const deleteSocial = (index) => {
     let tempHeaderDetails = [...headerDetails.social];
@@ -200,45 +206,26 @@ const UpdateHeader = () => {
   };
 
   const updateSocialValues = (e, index) => {
-    // Create a copy of the social array and the specific social object.
-    const tempHeaderDetails = [...headerDetails.social];
-    const socialObject = { ...tempHeaderDetails[index] };
 
-    // Update the specific property in the social object.
-    socialObject[e.target.name] = e.target.value;
 
-    // Replace the old social object with the updated one in the array.
-    tempHeaderDetails[index] = socialObject;
+    console.log("Change Alert : "+ e.target.value);
 
-    // Update the state with the modified array.
-    setHeaderDetails((prev) => ({
-      ...prev,
-      social: tempHeaderDetails,
-    }));
+
+    setHeaderDetails((prev) => {
+      const updatedSocial = [...prev.social];
+      updatedSocial[index] = {
+        ...updatedSocial[index],
+        [e.target.name]: e.target.value,
+      };
+      return {
+        ...prev,
+        social: updatedSocial,
+      };
+    });
   };
+  
 
-//   const updateSocialFiles = async (e, index) => {
-//     try {
-//     //   const base64Code = await convertImageToBase64(e.target.files[0]);
-//       const tempHeaderDetails = [...headerDetails.social];
-//       const socialObject = { ...tempHeaderDetails[index] };
-  
-//       // Update the specific property in the social object with the base64 code
-//       socialObject[e.target.name] = base64Code;
-  
-//       // Replace the old social object with the updated one in the array
-//       tempHeaderDetails[index] = socialObject;
-  
-//       // Update the state with the modified array
-//       setHeaderDetails((prev) => ({
-//         ...prev,
-//         social: tempHeaderDetails,
-//       }));
-//     } catch (error) {
-//       console.error("Error converting image to base64:", error);
-//     }
-//   };
-  
+
 
   console.log(headerDetails);
 
@@ -317,7 +304,7 @@ const UpdateHeader = () => {
                           placeholder="Enter name"
                           name="name"
                           value={item.name}
-                          onBlur={(e) => updateSocialValues(e, index)}
+                          onInput={(e) => updateSocialValues(e, index)}
                         />
                       </div>
                     </div>
@@ -330,7 +317,9 @@ const UpdateHeader = () => {
                           className="form-control"
                           id="icon-logo"
                           name="icon"
-                          onBlur={(e) => updateSocialValues(e, index)}
+                          placeholder="Logo Url"
+                          value={item.icon}
+                          onInput={(e) => updateSocialValues(e, index)}
                         />
                       </div>
                     </div>
@@ -345,7 +334,7 @@ const UpdateHeader = () => {
                           placeholder="Enter url"
                           name="url"
                           value={item.url}
-                          onBlur={(e) => updateSocialValues(e, index)}
+                          onInput={(e) => updateSocialValues(e, index)}
                         />
                       </div>
                     </div>

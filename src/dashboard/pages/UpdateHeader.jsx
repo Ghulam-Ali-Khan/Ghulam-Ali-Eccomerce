@@ -45,6 +45,15 @@ const UpdateHeader = () => {
       .get("http://localhost:5000/api/fetched-header")
       .then((response) => {
         console.log(response.data);
+
+
+
+        
+        
+     
+
+        console.log(response.data.data[0]);
+
         setHeaderDetails(response.data.data[0]);
       })
       .catch((error) => {
@@ -54,6 +63,10 @@ const UpdateHeader = () => {
 
 
   const updateValues = (e) => {
+
+    console.log("Change Alert : "+ e.target.value);
+
+
     const updatedDetails = {
       ...headerDetails,
       [e.target.name]: e.target.value,
@@ -90,13 +103,17 @@ const UpdateHeader = () => {
   
     // Use map to append key-value pairs to FormData
     keys.forEach((key) => {
-        if (key === "social") {
-          // Instead of converting to an array, send it as an object
-          formData.append(key, JSON.stringify(headerDetails.social));
-        } else {
-          formData.append(key, headerDetails[key]);
-        }
-      });
+      if (key === "social") {
+        const socialArray = headerDetails.social.map((socialObj) =>
+          JSON.stringify(socialObj)
+        );
+  
+        formData.append(key, socialArray);
+
+      } else {
+        formData.append(key, headerDetails[key]);
+      }
+    });
 
     await axios
       .put("http://localhost:5000/api/update-header", formData, {
@@ -164,22 +181,26 @@ const UpdateHeader = () => {
   };
 
   const createSocial = () => {
-    // Create a new object for the social item
-    const newItem = {
+    let tempHeaderDetails = headerDetails.social;
+
+    console.log("tempHeaderDetails : ", tempHeaderDetails);
+
+    const obj = {
       name: "",
       icon: null,
       url: "",
     };
-  
-    // Clone the existing social array and add the new item
-    const updatedSocial = [...headerDetails.social, newItem];
-  
-    // Update the state with the modified social array
+
+    tempHeaderDetails.push(obj);
+
+    console.log("newHeaderDetails : ", tempHeaderDetails);
+
     setHeaderDetails((prevObj) => ({
       ...prevObj,
-      social: updatedSocial,
+      social: tempHeaderDetails,
     }));
   };
+  
 
   const deleteSocial = (index) => {
     let tempHeaderDetails = [...headerDetails.social];
@@ -193,9 +214,6 @@ const UpdateHeader = () => {
   };
 
   const updateSocialValues = (e, index) => {
-
-    console.log(e.target.value);
-
     // Create a copy of the social array and the specific social object.
     const tempHeaderDetails = [...headerDetails.social];
     const socialObject = { ...tempHeaderDetails[index] };
@@ -205,8 +223,6 @@ const UpdateHeader = () => {
 
     // Replace the old social object with the updated one in the array.
     tempHeaderDetails[index] = socialObject;
-
-    console.log(tempHeaderDetails);
 
     // Update the state with the modified array.
     setHeaderDetails((prev) => ({
@@ -315,7 +331,7 @@ const UpdateHeader = () => {
                           placeholder="Enter name"
                           name="name"
                           value={item.name}
-                          onBlur={(e) => updateSocialValues(e, index)}
+                          onInput={(e) => updateSocialValues(e, index)}
                         />
                       </div>
                     </div>
@@ -328,7 +344,9 @@ const UpdateHeader = () => {
                           className="form-control"
                           id="icon-logo"
                           name="icon"
-                          onBlur={(e) => updateSocialValues(e, index)}
+                          placeholder="Logo Url"
+                          value={item.icon}
+                          onInput={(e) => updateSocialValues(e, index)}
                         />
                       </div>
                     </div>
@@ -343,7 +361,7 @@ const UpdateHeader = () => {
                           placeholder="Enter url"
                           name="url"
                           value={item.url}
-                          onBlur={(e) => updateSocialValues(e, index)}
+                          onInput={(e) => updateSocialValues(e, index)}
                         />
                       </div>
                     </div>

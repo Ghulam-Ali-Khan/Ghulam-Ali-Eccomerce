@@ -116,11 +116,11 @@ const Home = () => {
       </Typography> */}
 
       <div className="container" style={{marginTop:"20px"}}>
-        <CategoriesSection sectionDirection={false} category="name" />
+        <CategoriesSection sectionDirection={false} categoryId="64fcc2e064268d945ee56757" />
 
         <img src="https://htmldemo.net/reid/reid/assets/img/bg/banner3.jpg" alt="" className='ad-bnr' />
 
-        <CategoriesSection sectionDirection={true} category="name" />
+        <CategoriesSection sectionDirection={true} categoryId="0" />
 
 
 

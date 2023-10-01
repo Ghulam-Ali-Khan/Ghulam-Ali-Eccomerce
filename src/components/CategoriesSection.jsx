@@ -40,7 +40,11 @@ const CategoriesSection = (props) => {
 
   useEffect(() => {
     axios
-      .get("http://127.0.0.1:5000/api/fetched-products")
+      .get("http://127.0.0.1:5000/api/fetched-products",{
+        params:{
+          categoryId: props.categoryId,
+        }
+      })
       .then((response) => {
         console.log(response.data.products);
 

@@ -42,3 +42,50 @@ $dash_red:  rgb(243, 3, 3);
     color: $dash_red !important;
     margin-top: 10px;
 }
+
+// Products
+.product-table{
+    img{
+        max-width: 80px;
+        max-height: 150px;
+    }
+    .product-name{
+        &:hover{
+            text-decoration: underline;
+        }
+    }
+    tbody tr{
+        &:hover{
+            background-color: #1a73e850;
+            cursor: pointer;
+        }
+        .edit-btn{
+            color: $dash_dark_green;
+        }
+        .delete-btn{
+            color: red;
+            margin-left: 10px;
+        }
+    }
+}
+
+.table-modal{
+
+    // overflow-y: scroll;
+
+    img{
+        max-width: 100px;
+        max-height: 150px;
+    }
+    .container{
+        outline: none;
+        border: none;
+    }
+    .label{
+        font-size: 14px;
+        font-weight: 600;
+    }
+    p{
+        font-size: 12px;
+    }
+}

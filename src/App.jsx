@@ -22,6 +22,7 @@ import AddBlog from './dashboard/pages/AddBlog';
 import AddSlider from './dashboard/pages/AddSlider';
 import TempDashHome from './dashboard/pages/TempDashHome';
 import UpdateHeader from './dashboard/pages/UpdateHeader';
+import CategoryPage from './pages/CategoryPage';
 const App = () => {
 
   const location = useLocation();
@@ -41,6 +42,7 @@ const App = () => {
         <Route path='/' element={<Home />} />
         <Route path='/search-page' element={<SearchPage />} />
         <Route path='/detail-page' element={<DetailPage />} />
+        <Route path='/category-page' element={<CategoryPage />} />
         <Route path='/dashboard' element={<Layout />}>
           <Route path='home' element={< DashHome/>} exact />
           <Route path='add-product' element={<AddProduct/>} />

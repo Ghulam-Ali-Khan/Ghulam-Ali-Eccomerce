@@ -90,17 +90,13 @@ const UpdateHeader = () => {
   
     // Use map to append key-value pairs to FormData
     keys.forEach((key) => {
-      if (key === "social") {
-        const socialArray = headerDetails.social.map((socialObj) =>
-          JSON.stringify(socialObj)
-        );
-  
-        formData.append(key, socialArray);
-
-      } else {
-        formData.append(key, headerDetails[key]);
-      }
-    });
+        if (key === "social") {
+          // Instead of converting to an array, send it as an object
+          formData.append(key, JSON.stringify(headerDetails.social));
+        } else {
+          formData.append(key, headerDetails[key]);
+        }
+      });
 
     await axios
       .put("http://localhost:5000/api/update-header", formData, {
@@ -168,23 +164,20 @@ const UpdateHeader = () => {
   };
 
   const createSocial = () => {
-    let tempHeaderDetails = headerDetails.social;
-
-    console.log("tempHeaderDetails : ", tempHeaderDetails);
-
-    const obj = {
+    // Create a new object for the social item
+    const newItem = {
       name: "",
       icon: null,
       url: "",
     };
-
-    tempHeaderDetails.push(obj);
-
-    console.log("newHeaderDetails : ", tempHeaderDetails);
-
+  
+    // Clone the existing social array and add the new item
+    const updatedSocial = [...headerDetails.social, newItem];
+  
+    // Update the state with the modified social array
     setHeaderDetails((prevObj) => ({
       ...prevObj,
-      social: tempHeaderDetails,
+      social: updatedSocial,
     }));
   };
 
@@ -200,6 +193,9 @@ const UpdateHeader = () => {
   };
 
   const updateSocialValues = (e, index) => {
+
+    console.log(e.target.value);
+
     // Create a copy of the social array and the specific social object.
     const tempHeaderDetails = [...headerDetails.social];
     const socialObject = { ...tempHeaderDetails[index] };
@@ -209,6 +205,8 @@ const UpdateHeader = () => {
 
     // Replace the old social object with the updated one in the array.
     tempHeaderDetails[index] = socialObject;
+
+    console.log(tempHeaderDetails);
 
     // Update the state with the modified array.
     setHeaderDetails((prev) => ({

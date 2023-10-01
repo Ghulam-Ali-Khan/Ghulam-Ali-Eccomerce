@@ -111,11 +111,15 @@ const AddProduct = () => {
 
     // Use map to append key-value pairs to FormData
     keys.forEach((key) => {
+     
       if (key == "cardImages" || key == "bannerImages") {
         productDetails[key].forEach((file) => {
           formData.append(key, file);
         });
-      } else {
+      }else if(key =='price'){
+        formData.append(key, Math.ceil(priceCalculations.priceAfterDiscount));
+      }
+       else {
         formData.append(key, productDetails[key]);
       }
     });
@@ -292,13 +296,13 @@ const AddProduct = () => {
                       type="number"
                       value={priceCalculations.sellPrice}
                       onChange={(e) => {
-                        setPriceCalculations({
-                          ...priceCalculations,
+                        setPriceCalculations((prev)=>({
+                          ...prev,
                           sellPrice: e.target.value,
-
+                          priceAfterDiscount:  e.target.value - e.target.value *(prev.discount / 100),
                           profit:
-                            e.target.value - priceCalculations.retailPrice,
-                        });
+                            e.target.value - prev.retailPrice,
+                        }));
 
                         updateValues(e);
                       }}
@@ -369,6 +373,13 @@ const AddProduct = () => {
                         className={addDiscount === "no" && `add-discount-no`}
                         onClick={() => {
                           setAddDiscount("no");
+                          setPriceCalculations((prev)=>({
+                            ...prev,
+                            discount:0,
+                            priceAfterDiscount:  prev.sellPrice - prev.sellPrice *(0 / 100),
+                           
+                          }));
+
                         }}
                       >
                         No

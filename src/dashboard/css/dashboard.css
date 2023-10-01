@@ -35,4 +35,39 @@
 .red-btn-color {
   color: rgb(243, 3, 3) !important;
   margin-top: 10px;
+}
+
+.product-table img {
+  max-width: 80px;
+  max-height: 150px;
+}
+.product-table .product-name:hover {
+  text-decoration: underline;
+}
+.product-table tbody tr:hover {
+  background-color: rgba(26, 115, 232, 0.3137254902);
+  cursor: pointer;
+}
+.product-table tbody tr .edit-btn {
+  color: #2e9900;
+}
+.product-table tbody tr .delete-btn {
+  color: red;
+  margin-left: 10px;
+}
+
+.table-modal img {
+  max-width: 100px;
+  max-height: 150px;
+}
+.table-modal .container {
+  outline: none;
+  border: none;
+}
+.table-modal .label {
+  font-size: 14px;
+  font-weight: 600;
+}
+.table-modal p {
+  font-size: 12px;
 }/*# sourceMappingURL=dashboard.css.map */

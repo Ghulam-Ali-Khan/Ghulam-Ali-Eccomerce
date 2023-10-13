@@ -70,4 +70,19 @@
 }
 .table-modal p {
   font-size: 12px;
+}
+
+.search-area-table {
+  gap: 5px;
+}
+.search-area-table input {
+  max-width: 300px;
+}
+.search-area-table button {
+  background-color: #1a73e8;
+  color: white;
+}
+.search-area-table button:hover {
+  border-color: #1a73e8;
+  color: #1a73e8;
 }/*# sourceMappingURL=dashboard.css.map */

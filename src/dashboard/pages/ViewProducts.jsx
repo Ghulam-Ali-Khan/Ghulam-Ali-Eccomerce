@@ -11,7 +11,7 @@ import { useEffect, useState } from 'react';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import CloseIcon from '@mui/icons-material/Close';
-import { Button, IconButton } from '@mui/material';
+import { Button, IconButton, TextField } from '@mui/material';
 import { Modal } from '@mui/material';
 import BrowserUpdatedIcon from '@mui/icons-material/BrowserUpdated';
 
@@ -22,7 +22,7 @@ let url = "http://localhost:5000/";
 
 
 export default function ViewProducts() {
-
+  const [productSearch, setProductSearch] = useState("");
   const [productsData, setProductsData] = useState([]);
   const [categoriesData, setCategoriesData] = useState([]);
   const [singleProduct, setSingleProduct] = useState(null);
@@ -61,6 +61,7 @@ export default function ViewProducts() {
 
         setProductsData(response.data.products);
 
+
       })
       .catch((error) => {
         console.log(error);
@@ -85,26 +86,73 @@ export default function ViewProducts() {
 
   }, []);
 
-  const updateProductFun= async()=>{
+  const updateProductFun = async () => {
 
-    setUpdateProduct((prevObj)=>({
-      ...prevObj,
-      category:prevObj.category._id
-    }))
- 
-   
-    await axios.put(`${url}api/update-products`, updateProduct)
-      .then((response)=>{
+
+
+
+    console.log(updateProduct);
+
+
+
+
+    const formData = new FormData();
+
+    const keys = Object.keys(updateProduct);
+
+    // Use map to append key-value pairs to FormData
+    keys.forEach((key) => {
+
+      if (key == "cardImages" || key == "bannerImages") {
+        updateProduct[key].forEach((file) => {
+          formData.append(key, file);
+        });
+      }
+      else {
+        formData.append(key, updateProduct[key]);
+      }
+    });
+
+
+    await axios.put(`${url}api/update-products`, formData)
+      .then((response) => {
         console.log(response.data);
-  
+
+        if (response.data.success) {
+          setUpdateProduct(prev => ({
+
+
+            ...prev,
+
+            bannerImages: [],
+            cardImages: [],
+            category: "",
+            description: "",
+            discount: 0,
+            metaDescription: "",
+            metaKeywords: "",
+            metaTitle: "",
+            name: "",
+            price: 0,
+            purchasePrice: 0,
+            quantity: 0,
+            salePrice: 0,
+
+          }));
+
+
+          setOpenUpdate(false);
+          refreshProductsData();
+        }
+
       })
-      .catch((error)=>{
+      .catch((error) => {
         console.log(error);
       })
-  
 
 
-    
+
+
   }
 
   const refreshProductsData = () => {
@@ -159,6 +207,17 @@ export default function ViewProducts() {
         console.log(response.data.data);
         setSingleProduct(response.data.data);
         setUpdateProduct(response.data.data);
+
+
+        setUpdateProduct((prev) => ({
+          ...prev,
+          cardImages: [],
+          bannerImages: [],
+          category: prev.category._id,
+        }));
+
+
+
       })
       .catch((error) => {
         console.log(error);
@@ -178,6 +237,53 @@ export default function ViewProducts() {
 
   }
 
+  const updateFiles = (e) => {
+    console.log("updateFiles function called");
+    const files = e.target.files;
+
+    // Create new arrays to update state
+    const updatedCardImages = [...updateProduct.cardImages];
+    const updatedBannerImages = [...updateProduct.bannerImages];
+
+    for (let i = 0; i < files.length; i++) {
+      if (e.target.name === "cardImages") {
+        updatedCardImages.push(files[i]);
+      } else if (e.target.name === "bannerImages") {
+        updatedBannerImages.push(files[i]);
+      }
+    }
+
+    console.log("Updated cardImages:", updatedCardImages);
+    console.log("Updated bannerImages:", updatedBannerImages);
+
+    setUpdateProduct((prevObj) => ({
+      ...prevObj,
+      cardImages: updatedCardImages,
+      bannerImages: updatedBannerImages,
+    }));
+  };
+
+
+  const handleSearch=()=>{
+
+    axios.post(`${url}api/search-products`,{
+      search:productSearch
+    })
+    .then((response)=>{
+      console.log(response.data);
+      setProductsData(
+        response.data.products
+      );
+    })
+    .catch((error)=>{
+
+      console.log(error);
+
+    })
+
+
+  }
+
   return (
 
     <div className="main-content">
@@ -185,7 +291,27 @@ export default function ViewProducts() {
         <div className="container-fluid">
 
 
+
+
           <TableContainer component={Paper} className='product-table'>
+            <div className="justify-content-end d-flex gap search-area-table p-2">
+              <input
+                type="text"
+                class="form-control"
+                id="updateProductName"
+                placeholder="Enter Search"
+                name="search"
+    value={productSearch}
+                onChange={(e) => { 
+                  setProductSearch(e.target.value)
+                }}
+              />
+
+              <button className='btn ' onClick={handleSearch}>
+                Search
+              </button>
+            </div>
+
             <Table sx={{ minWidth: 650 }} aria-label="simple table">
               <TableHead>
                 <TableRow>
@@ -336,10 +462,10 @@ export default function ViewProducts() {
                             class="form-control"
                             id="updateProductCategory"
                             name="category"
-                            value={updateProduct.category._id}
+                            value={updateProduct.category}
                             onChange={(e) => onChangeUpdateProduct(e)}
                           >
-                            <option>Choose One</option>
+                            <option value="" >Choose One</option>
 
                             {
                               categoriesData.map((item, index) => (
@@ -372,7 +498,7 @@ export default function ViewProducts() {
                             class="form-control"
                             id="productCardImgs"
                             name="cardImages"
-                            onChange={(e) => onChangeUpdateProduct(e)}
+                            onChange={(e) => updateFiles(e)}
 
                             multiple
                           />
@@ -380,13 +506,13 @@ export default function ViewProducts() {
                       </div>
                       <div className="col-lg-6 col-xl-6 col-md-6 col-sm-12">
                         <div class="form-group mt-2">
-                          <label for="productCardImgs">Product Card Images</label>
+                          <label for="productCardImgs">Product Banner Images</label>
                           <input
                             type="file"
                             class="form-control"
                             id="productCardImgs"
                             name="bannerImages"
-                            onChange={(e) => onChangeUpdateProduct(e)}
+                            onChange={(e) => updateFiles(e)}
                             multiple
                           />
                         </div>
@@ -484,6 +610,29 @@ export default function ViewProducts() {
                         </div>
                       </div>
 
+
+
+
+                      <div className="col-lg-12 col-xl-12 col-md-12 col-sm-12 mt-2">
+                        <div class="form-group">
+                          <label for="updateProductName">
+                            Quantity
+                          </label>
+                          <input
+                            type="number"
+
+
+                            class="form-control"
+                            id="updateProductName"
+                            placeholder="Enter Quantity"
+                            name="quantity"
+                            value={updateProduct.quantity}
+                            onChange={(e) => onChangeUpdateProduct(e)}
+                          />
+                        </div>
+                      </div>
+
+
                       <div className="col-lg-12 col-xl-12 col-md-12 col-sm-12 mt-2">
                         <h2>Seo Details</h2>
                       </div>
@@ -541,9 +690,9 @@ export default function ViewProducts() {
                       </div>
 
 
-<div className="justify-content-end d-flex mt-2">
-  <Button startIcon={<BrowserUpdatedIcon/>} variant='contained' onClick={updateProductFun}>Update Product</Button>
-</div>
+                      <div className="justify-content-end d-flex mt-2">
+                        <Button startIcon={<BrowserUpdatedIcon />} variant='contained' onClick={updateProductFun}>Update Product</Button>
+                      </div>
 
 
                     </div>

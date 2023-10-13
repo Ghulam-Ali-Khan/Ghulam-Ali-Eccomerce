@@ -92,7 +92,7 @@ const Sidebar = () => {
                   </li>
                  
                   <li className="nav-item">
-                    <a href="apps-chat.html" className="nav-link" data-key="t-chat"> View Categries </a>
+                  <Link to="/dashboard/view-category" className="nav-link" data-key="t-calendar"> View Categries </Link>
                   </li>
                 </ul>
               </div>
@@ -117,7 +117,7 @@ const Sidebar = () => {
                     <Link to="/dashboard/add-slider" className="nav-link" data-key="t-calendar"> Add Slide </Link>
                   </li>
                   <li className="nav-item">
-                    <a href="apps-chat.html" className="nav-link" data-key="t-chat"> View Slides</a>
+                    <Link to="/dashboard/view-sliders" className="nav-link" data-key="t-chat"> View Slides</Link>
                   </li>
                 </ul>
               </div>

@@ -23,6 +23,8 @@ import AddSlider from './dashboard/pages/AddSlider';
 import TempDashHome from './dashboard/pages/TempDashHome';
 import UpdateHeader from './dashboard/pages/UpdateHeader';
 import CategoryPage from './pages/CategoryPage';
+import ViewCategory from './dashboard/pages/ViewCategory';
+import ViewSliders from './dashboard/pages/ViewSliders';
 const App = () => {
 
   const location = useLocation();
@@ -48,8 +50,10 @@ const App = () => {
           <Route path='add-product' element={<AddProduct/>} />
           <Route path='add-category' element={<AddCategorey/>} />
           <Route path='view-product' element={<ViewProducts/>} />
+          <Route path='view-category' element={<ViewCategory/>} />
           <Route path='add-blog' element={<AddBlog/>} />
           <Route path='add-slider' element={<AddSlider/>} />
+          <Route path='view-sliders' element={<ViewSliders/>}/>
           <Route path='component-header' element={<UpdateHeader/>}/>
         </Route>
       </Routes>

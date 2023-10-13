@@ -89,3 +89,21 @@ $dash_red:  rgb(243, 3, 3);
         font-size: 12px;
     }
 }
+
+.search-area-table{
+    gap: 5px;
+    input{
+      max-width: 300px;  
+    }
+    button{
+        background-color: $dash_blue;
+        color: white;
+
+        &:hover{
+            border-color: $dash_blue;
+            color: $dash_blue;
+        }
+    }
+    
+    
+}

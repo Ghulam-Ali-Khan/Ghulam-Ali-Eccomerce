@@ -142,7 +142,7 @@ const Sidebar = () => {
                     <Link to="/dashboard/add-blog" className="nav-link" data-key="t-calendar"> Create Blog </Link>
                   </li>
                   <li className="nav-item">
-                    <a href="apps-chat.html" className="nav-link" data-key="t-chat"> View Blogs </a>
+                    <Link to="/dashboard/view-blogs" className="nav-link" data-key="t-chat"> View Blogs </Link>
                   </li>
                 </ul>
               </div>

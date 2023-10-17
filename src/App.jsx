@@ -25,6 +25,7 @@ import UpdateHeader from './dashboard/pages/UpdateHeader';
 import CategoryPage from './pages/CategoryPage';
 import ViewCategory from './dashboard/pages/ViewCategory';
 import ViewSliders from './dashboard/pages/ViewSliders';
+import ViewBlogs from './dashboard/pages/ViewBlogs';
 const App = () => {
 
   const location = useLocation();
@@ -52,6 +53,7 @@ const App = () => {
           <Route path='view-product' element={<ViewProducts/>} />
           <Route path='view-category' element={<ViewCategory/>} />
           <Route path='add-blog' element={<AddBlog/>} />
+          <Route path='view-blogs' element={<ViewBlogs/>} />
           <Route path='add-slider' element={<AddSlider/>} />
           <Route path='view-sliders' element={<ViewSliders/>}/>
           <Route path='component-header' element={<UpdateHeader/>}/>

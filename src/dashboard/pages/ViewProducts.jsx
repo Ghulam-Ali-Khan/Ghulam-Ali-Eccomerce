@@ -21,7 +21,7 @@ let url = "http://localhost:5000/";
 
 
 
-export default function ViewProducts() {
+export default function ViewBlogs() {
   const [productSearch, setProductSearch] = useState("");
   const [productsData, setProductsData] = useState([]);
   const [categoriesData, setCategoriesData] = useState([]);
@@ -213,7 +213,7 @@ export default function ViewProducts() {
           ...prev,
           cardImages: [],
           bannerImages: [],
-          category: prev.category._id,
+          category: (prev.category._id)?prev.category._id: {name:"none"},
         }));
 
 
@@ -377,7 +377,7 @@ export default function ViewProducts() {
                     <div className="row">
                       <div className="col-lg-8 col-xl-8 col-md-8 col-sm-12">
                         <h2>{singleProduct != null && singleProduct.name}</h2>
-                        <span className='label'>{singleProduct != null && singleProduct.category.name}</span>
+                        <span className='label'>{(singleProduct != null && singleProduct.category.name)&& singleProduct.category.name}</span>
                       </div>
                       <div className="col-lg-4 col-xl-4 col-md-4 col-sm-12">
                         <img src={`${url}uploads/products/${singleProduct != null && singleProduct.cardImages[0]}`} alt="" />

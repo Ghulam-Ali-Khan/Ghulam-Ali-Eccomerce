@@ -22,14 +22,14 @@ let url = "http://localhost:5000/";
 
 
 export default function ViewSliders() {
-    const [categorySearch, setCategorySearch] = useState("");
+    const [sliderSearch, setSliderSearch] = useState("");
     const [categoryData, setCategoryData] = useState([]);
-    const [categoriesData, setCategoriesData] = useState([]);
-    const [singleCategory, setSingleCategory] = useState(null);
-    const [updateCategory, setUpdateCategory] = useState({
+    const [slidersData, setSlidersData] = useState([]);
+    const [singleSlider, setSingleSlider] = useState(null);
+    const [updateSlider, setUpdateSlider] = useState({
         id: "",
-        bannerImage: "",
-        cardImage: "",
+        
+        banner: "",
 
         description: "",
 
@@ -56,7 +56,7 @@ export default function ViewSliders() {
         axios.get(`${url}api/all-slider`)
             .then((response) => {
                 console.log(response.data.data);
-                setCategoriesData(response.data.data);
+                setSlidersData(response.data.data);
 
             })
             .catch((error) => {
@@ -65,44 +65,44 @@ export default function ViewSliders() {
 
     }, []);
 
-    const updateCategoryFun = async () => {
+    const updateSliderFun = async () => {
 
 
 
 
-        console.log(updateCategory);
+        console.log(updateSlider);
 
 
 
 
         const formData = new FormData();
 
-        const keys = Object.keys(updateCategory);
+        const keys = Object.keys(updateSlider);
 
         // Use map to append key-value pairs to FormData
         keys.forEach((key) => {
 
 
 
-            formData.append(key, updateCategory[key]);
+            formData.append(key, updateSlider[key]);
 
 
 
         });
 
 
-        await axios.put(`${url}api/update-categories`, formData)
+        await axios.put(`${url}api/update-slider`, formData)
             .then((response) => {
                 console.log(response.data);
 
                 if (response.data.success) {
-                    setUpdateCategory(prev => ({
+                    setUpdateSlider(prev => ({
 
 
                         ...prev,
 
-                        bannerImages: "",
-                        cardImages: "",
+                        banner: "",
+                    
 
                         description: "",
 
@@ -116,7 +116,7 @@ export default function ViewSliders() {
 
 
                     setOpenUpdate(false);
-                    refreshCategoriesData();
+                    refreshSlidersData();
                 }
 
             })
@@ -129,19 +129,13 @@ export default function ViewSliders() {
 
     }
 
-    const refreshCategoriesData = () => {
+    const refreshSlidersData = () => {
 
 
-        axios.get(`${url}api/fetch-categories`,
-            {
-                params: {
-                    type: "all", // Send 'type' as a query parameter
-                },
-            }
-        )
+        axios.get(`${url}api/all-slider`)
             .then((response) => {
                 console.log(response.data.data);
-                setCategoriesData(response.data.data);
+                setSlidersData(response.data.data);
 
             })
             .catch((error) => {
@@ -150,18 +144,18 @@ export default function ViewSliders() {
 
     }
 
-    const deleteOneCategory = (id) => {
+    const deleteOneSlider = (id) => {
 
 
-        axios.delete(`${url}api/delete-one-category`, {
+        axios.delete(`${url}api/delete-one-slider`, {
 
-            data: { categoryId: id }
+            data: { sliderId: id }
         })
             .then((response) => {
                 console.log(response.data);
 
                 if (response.data.success) {
-                    refreshCategoriesData();
+                    refreshSlidersData();
                 }
 
             })
@@ -173,20 +167,18 @@ export default function ViewSliders() {
     }
 
 
-    const fetchedProduct = (id) => {
+    const fetchedSlider = (id) => {
 
         // alert(id);
 
 
-        axios.post(`${url}api/edit-categories`, {
-
+        axios.post(`${url}api/edit-slider`, {
             id: id
-
         })
             .then((response) => {
                 console.log(response.data.data);
-                setSingleCategory(response.data.data);
-                setUpdateCategory(response.data.data);
+                setSingleSlider(response.data.data);
+                setUpdateSlider(response.data.data);
 
 
 
@@ -200,15 +192,16 @@ export default function ViewSliders() {
 
     }
 
-    const onChangeUpdateCategory = (e) => {
+    const onChangeUpdateSlider = (e) => {
 
-        setUpdateCategory(prevObj => ({
+        setUpdateSlider(prevObj => ({
 
             ...prevObj,
             [e.target.name]: e.target.value,
 
         }))
 
+        console.log(updateSlider);
 
     }
 
@@ -216,7 +209,7 @@ export default function ViewSliders() {
         console.log("updateFiles function called");
 
 
-        setUpdateCategory((prevObj) => ({
+        setUpdateSlider((prevObj) => ({
             ...prevObj,
             [e.target.name]: e.target.files[0]
         }));
@@ -225,12 +218,12 @@ export default function ViewSliders() {
 
     const handleSearch = () => {
 
-        axios.post(`${url}api/searched-categories`, {
-            search: categorySearch
+        axios.post(`${url}api/search-sliders`, {
+            search: sliderSearch
         })
             .then((response) => {
                 console.log(response.data);
-                setCategoriesData(response.data.data);
+                setSlidersData(response.data.data);
             })
             .catch((error) => {
 
@@ -258,9 +251,9 @@ export default function ViewSliders() {
                                 id="updateProductName"
                                 placeholder="Enter Search"
                                 name="search"
-                                value={categorySearch}
+                                value={sliderSearch}
                                 onChange={(e) => {
-                                    setCategorySearch(e.target.value)
+                                    setSliderSearch(e.target.value)
                                 }}
                             />
 
@@ -280,15 +273,15 @@ export default function ViewSliders() {
                                 </TableRow>
                             </TableHead>
                             <TableBody>
-                                {categoriesData.map((row) => (
+                                {slidersData.map((row) => (
                                     <TableRow
-                                        key={row.name}
+                                        key={row._id}
                                         sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
 
                                     >
                                         <TableCell className='product-name' component="th" scope="row" onClick={() => {
                                             handleOpen();
-                                            fetchedProduct(row._id);
+                                            fetchedSlider(row._id);
                                         }}>
                                             {row.name}
                                         </TableCell>
@@ -297,8 +290,8 @@ export default function ViewSliders() {
                                         <TableCell align="right"> <img src={`${url}uploads/sliders/${row.banner}`} alt="" /> </TableCell>
                                         <TableCell align="right"><IconButton className='edit-btn' onClick={() => {
                                             handleOpenUpdate();
-                                            fetchedProduct(row._id);
-                                        }} ><EditIcon /></IconButton> <IconButton className='delete-btn' onClick={() => deleteOneCategory(row._id)}><DeleteIcon /></IconButton></TableCell>
+                                            fetchedSlider(row._id);
+                                        }} ><EditIcon /></IconButton> <IconButton className='delete-btn' onClick={() => deleteOneSlider(row._id)}><DeleteIcon /></IconButton></TableCell>
 
                                     </TableRow>
                                 ))}
@@ -326,16 +319,16 @@ export default function ViewSliders() {
                                         </div>
                                         <div className="row">
                                             <div className="col-lg-8 col-xl-8 col-md-8 col-sm-12">
-                                                <h2>{singleCategory != null && singleCategory.name}</h2>
-                                                <span className='label'>{singleCategory != null && singleCategory.type}</span>
+                                                <h2>{singleSlider != null && singleSlider.name}</h2>
+                                                <span className='label'>{singleSlider != null && singleSlider.type}</span>
                                             </div>
                                             <div className="col-lg-4 col-xl-4 col-md-4 col-sm-12">
-                                                <img src={`${url}uploads/sliders/${singleCategory != null && singleCategory.banner}`} alt="" />
+                                                <img src={`${url}uploads/sliders/${singleSlider != null && singleSlider.banner}`} alt="" />
                                             </div>
 
                                             <div className="col-lg-12 col-xl-12 col-md-12 col-sm-12">
                                                 <span className='label'>Description</span>
-                                                <p className='description'>{singleCategory != null && singleCategory.description}</p>
+                                                <p className='description'>{singleSlider != null && singleSlider.description}</p>
                                             </div>
 
 
@@ -372,10 +365,10 @@ export default function ViewSliders() {
                                             <IconButton onClick={handleCloseUpdate}><CloseIcon /></IconButton>
                                         </div>
                                         <div className="row">
-                                            <div className="col-lg-6 col-xl-6 col-md-6 col-sm-6">
+                                            <div className="col-lg-12 col-xl-12 col-md-12 col-sm-12">
                                                 <div class="form-group">
                                                     <label for="updateProductName">
-                                                        Category Name
+                                                        Slider Name
                                                     </label>
                                                     <input
                                                         type="text"
@@ -383,68 +376,36 @@ export default function ViewSliders() {
                                                         id="updateProductName"
                                                         placeholder="Enter Name"
                                                         name="name"
-                                                        value={updateCategory.name}
-                                                        onChange={(e) => onChangeUpdateCategory(e)}
+                                                        value={updateSlider.name}
+                                                        onChange={(e) => onChangeUpdateSlider(e)}
                                                     />
                                                 </div>
                                             </div>
 
-                                            <div className="col-lg-6 col-xl-6 col-md-6 col-sm-12">
-                                                <div class="form-group">
-                                                    <label for="updateProductCategory">
-                                                        Category Type
-                                                    </label>
-                                                    <select
-                                                        class="form-control"
-                                                        id="updateProductCategory"
-                                                        name="type"
-                                                        value={updateCategory.type}
-                                                        onChange={(e) => onChangeUpdateCategory(e)}
-                                                    >
-                                                        <option value="product" >Product</option>
-                                                        <option value="blog" >Blog</option>
-
-
-
-                                                    </select>
-                                                </div>
-                                            </div>
+                                           
 
                                             <div className="col-lg-12 col-xl-12 col-md-12 col-sm-12 mt-2">
 
-                                                <label for="productDescription">Category Description</label>
+                                                <label for="productDescription">Slider Description</label>
                                                 <textarea
                                                     class="form-control"
                                                     id="productDescription"
                                                     rows="3"
                                                     name="description"
-                                                    value={updateCategory.description}
-                                                    onChange={(e) => onChangeUpdateCategory(e)}
+                                                    value={updateSlider.description}
+                                                    onChange={(e) => onChangeUpdateSlider(e)}
                                                 ></textarea>
                                             </div>
 
-                                            <div className="col-lg-6 col-xl-6 col-md-6 col-sm-12">
+                                           
+                                            <div className="col-lg-12 col-xl-12 col-md-12 col-sm-12">
                                                 <div class="form-group mt-2">
-                                                    <label for="productCardImgs">Category Card Image</label>
+                                                    <label for="productCardImgs">Slider Image</label>
                                                     <input
                                                         type="file"
                                                         class="form-control"
                                                         id="productCardImgs"
-                                                        name="cardImage"
-                                                        onChange={(e) => updateFiles(e)}
-
-
-                                                    />
-                                                </div>
-                                            </div>
-                                            <div className="col-lg-6 col-xl-6 col-md-6 col-sm-12">
-                                                <div class="form-group mt-2">
-                                                    <label for="productCardImgs">Category Banner Images</label>
-                                                    <input
-                                                        type="file"
-                                                        class="form-control"
-                                                        id="productCardImgs"
-                                                        name="bannerImage"
+                                                        name="banner"
                                                         onChange={(e) => updateFiles(e)}
 
                                                     />
@@ -469,8 +430,8 @@ export default function ViewSliders() {
                                                         id="updateProductName"
                                                         placeholder="Enter Price"
                                                         name="metaTitle"
-                                                        value={updateCategory.metaTitle}
-                                                        onChange={(e) => onChangeUpdateCategory(e)}
+                                                        value={updateSlider.metaTitle}
+                                                        onChange={(e) => onChangeUpdateSlider(e)}
                                                     />
                                                 </div>
                                             </div>
@@ -488,8 +449,8 @@ export default function ViewSliders() {
                                                         id="updateProductName"
                                                         placeholder="Enter Price"
                                                         name="metaKeywords"
-                                                        value={updateCategory.metaKeywords}
-                                                        onChange={(e) => onChangeUpdateCategory(e)}
+                                                        value={updateSlider.metaKeywords}
+                                                        onChange={(e) => onChangeUpdateSlider(e)}
 
                                                     />
                                                 </div>
@@ -503,15 +464,15 @@ export default function ViewSliders() {
                                                     id="productDescription"
                                                     rows="3"
                                                     name="metaDescription"
-                                                    value={updateCategory.metaDescription}
-                                                    onChange={(e) => onChangeUpdateCategory(e)}
+                                                    value={updateSlider.metaDescription}
+                                                    onChange={(e) => onChangeUpdateSlider(e)}
 
                                                 ></textarea>
                                             </div>
 
 
                                             <div className="justify-content-end d-flex mt-2">
-                                                <Button startIcon={<BrowserUpdatedIcon />} variant='contained' onClick={updateCategoryFun}>Update Product</Button>
+                                                <Button startIcon={<BrowserUpdatedIcon />} variant='contained' onClick={updateSliderFun}>Update Slider</Button>
                                             </div>
 
 

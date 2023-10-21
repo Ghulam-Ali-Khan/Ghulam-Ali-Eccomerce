@@ -1,18 +1,21 @@
 import { MenuItem, Typography } from '@mui/material';
-import React, { useState } from 'react'
-
-const MegaMenu = (props) => {
+import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom';
+const MegaMenu = ({MegaMenuItems, name, type}) => {
 
 
     const [displayMegaMenu, setDisplayMegaMenu] = useState(false);
 
-    const menuCols = 12/props.MegaMenuItems.length;
+  
+
+
+    const menuCols = 12/MegaMenuItems.length;
     console.log(menuCols);
 
     return (
         <>
 
-            <a class="nav-link" href="#" onMouseEnter={()=>{setDisplayMegaMenu(true)} } onMouseLeave={()=>{setDisplayMegaMenu(false)}} >{props.name}</a>
+            <Link class="nav-link" to={`/categories/${type}`} onMouseEnter={()=>{setDisplayMegaMenu(true)} } onMouseLeave={()=>{setDisplayMegaMenu(false)}} style={{textTransform:"capitalize"}}>{type+"s"}</Link>
 
 
 
@@ -24,20 +27,15 @@ displayMegaMenu && (
 
 
                     {
-                        props.MegaMenuItems.map((obj, index) => (
+                        MegaMenuItems.map((obj, index) => (
 
                             <div className={`col-lg-${menuCols} col-md-${menuCols}`}>
 
-<Typography variant='h6' component="h3" className='menu-head' >{obj.head}</Typography>
+<Link to={`/category-page/${type}/${obj._id}`} className='text-decoration-none'>
 
-                                {
-                                    obj.menus.map((item) => (
-
-
-                                        <MenuItem> {item} </MenuItem>
-
-                                    ))
-                                }
+<Typography variant='h6' component="h3" className='menu-head' >{obj.name}</Typography>
+</Link>
+                                
                             </div>
 
 

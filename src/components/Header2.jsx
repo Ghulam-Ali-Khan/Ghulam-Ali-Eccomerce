@@ -19,6 +19,10 @@ import ShoppingBasketOutlinedIcon from '@mui/icons-material/ShoppingBasketOutlin
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
 import CampaignOutlinedIcon from '@mui/icons-material/CampaignOutlined';
 import TestLogo from "../imgs/comfatra-logo.png";
+import axios from 'axios';
+import { Link } from 'react-router-dom';
+
+
 const Header2 = () => {
 
     const [valueBottomMenu, setValueBottomMenu] = React.useState(0);
@@ -28,89 +32,129 @@ const Header2 = () => {
     };
 
 
+    const [productCategories, setProductCategories] = useState([]);
 
-    const megamenuItems1 = [{
-        head: 'Sample1',
-        menus: [
-            'menu1',
-            'menu2',
-            'menu3',
-            'menu4',
-        ]
-    },
-    {
-        head: 'Sample2',
-        menus: [
-            'menu1',
-            'menu2',
-            'menu3',
-            'menu4',
-        ]
-    },
-    {
-        head: 'Sample3',
-        menus: [
-            'menu1',
-            'menu2',
-            'menu3',
-            'menu4',
-        ]
-    },
-    {
-        head: 'Sample4',
-        menus: [
-            'menu1',
-            'menu2',
-            'menu3',
-            'menu4',
-        ]
-    }
-    ];
+    // const productCategories = [{
+    //     head: 'Sample1',
+    //     menus: [
+    //         'menu1',
+    //         'menu2',
+    //         'menu3',
+    //         'menu4',
+    //     ]
+    // },
+    // {
+    //     head: 'Sample2',
+    //     menus: [
+    //         'menu1',
+    //         'menu2',
+    //         'menu3',
+    //         'menu4',
+    //     ]
+    // },
+    // {
+    //     head: 'Sample3',
+    //     menus: [
+    //         'menu1',
+    //         'menu2',
+    //         'menu3',
+    //         'menu4',
+    //     ]
+    // },
+    // {
+    //     head: 'Sample4',
+    //     menus: [
+    //         'menu1',
+    //         'menu2',
+    //         'menu3',
+    //         'menu4',
+    //     ]
+    // }
+    // ];
 
+    const [blogCategories, setBlogCategories] = useState([]);
 
-    const megamenuItems2 = [{
-        head: 'Cat1',
-        menus: [
-            'menu1',
-            'menu2',
-            'menu3',
-            'menu4',
-        ]
-    },
-    {
-        head: 'Sample2',
-        menus: [
-            'menu1',
-            'menu2',
-            'menu3',
-            'menu4',
-        ]
-    },
-    {
-        head: 'Sample3',
-        menus: [
-            'menu1',
-            'menu2',
-            'menu3',
-            'menu4',
-        ]
-    },
-    {
-        head: 'Sample4',
-        menus: [
-            'menu1',
-            'menu2',
-            'menu3',
-            'menu4',
-        ]
-    }
-    ];
+    // const blogCategories = [{
+    //     head: 'Cat1',
+    //     menus: [
+    //         'menu1',
+    //         'menu2',
+    //         'menu3',
+    //         'menu4',
+    //     ]
+    // },
+    // {
+    //     head: 'Sample2',
+    //     menus: [
+    //         'menu1',
+    //         'menu2',
+    //         'menu3',
+    //         'menu4',
+    //     ]
+    // },
+    // {
+    //     head: 'Sample3',
+    //     menus: [
+    //         'menu1',
+    //         'menu2',
+    //         'menu3',
+    //         'menu4',
+    //     ]
+    // },
+    // {
+    //     head: 'Sample4',
+    //     menus: [
+    //         'menu1',
+    //         'menu2',
+    //         'menu3',
+    //         'menu4',
+    //     ]
+    // }
+    // ];
 
 
     const mobileDevice = useMediaQuery('(min-width: 1000px)');
 
     const [mobileWidth, setMobileWidth] = useState(null);
     const [displayMenuSM, setDisplayMenuSM] = useState(false);
+
+    let url = "http://localhost:5000/";
+    useEffect(()=>{
+
+        axios.get(`${url}api/fetch-categories`, {
+            params: {
+              type: "product", // Send 'type' as a query parameter
+            },
+          })
+    .then((response)=>{
+      console.log(response.data.data);
+      setProductCategories(
+        response.data.data
+      )
+    })
+    .catch((error)=>{
+      console.log(error);
+    });
+    
+
+
+    axios.get(`${url}api/fetch-categories`, {
+        params: {
+          type: "blog", // Send 'type' as a query parameter
+        },
+      })
+.then((response)=>{
+  console.log(response.data.data);
+  setBlogCategories(
+    response.data.data
+  )
+})
+.catch((error)=>{
+  console.log(error);
+});
+
+    },[])
+
 
     useEffect(() => {
 
@@ -142,10 +186,15 @@ const Header2 = () => {
                                     <div className="col-lg-6 col-md-6 middle-col">
                                         <div className="search">
                                             <select >
-                                                <option selected>All Categorey</option>
-                                                <option value="1">One</option>
-                                                <option value="2">Two</option>
-                                                <option value="3">Three</option>
+                                                <option selected value='0'>All Categorey</option>
+                                                {
+                                                    productCategories.map((item)=>(
+                                                         <option value={item._id}>{item.name}</option>
+                                                    ))
+                                                }
+                                                
+                                               
+                                               
                                             </select>
                                             <input type="text" placeholder='Search products here...' />
                                             <button>
@@ -163,25 +212,25 @@ const Header2 = () => {
                                 <div className="row header-bottom">
                                     <ul class="nav">
                                         <li class="nav-item">
-                                            <a class="nav-link active" href="#">Home</a>
+                                            <Link className="nav-link active" to="/">Home</Link>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link active" href="#">About</a>
+                                            <a className="nav-link active" href="#">About</a>
 
-
-                                        </li>
-                                        <li class="nav-item">
-
-                                            <MegaMenu name="MegaMenu" MegaMenuItems={megamenuItems1} />
 
                                         </li>
                                         <li class="nav-item">
-                                            <MegaMenu name="Categories" MegaMenuItems={megamenuItems2} />
+
+                                            <MegaMenu  type="product" name="Categories" MegaMenuItems={productCategories} />
+
+                                        </li>
+                                        <li class="nav-item">
+                                            <MegaMenu type="blog" name="Blogs" MegaMenuItems={blogCategories} />
                                         </li>
 
-                                        <li class="nav-item">
+                                        {/* <li class="nav-item">
                                             <a class="nav-link" href="#">Blogs</a>
-                                        </li>
+                                        </li> */}
                                         <li class="nav-item">
                                             <a class="nav-link" href="#">Contact</a>
                                         </li>

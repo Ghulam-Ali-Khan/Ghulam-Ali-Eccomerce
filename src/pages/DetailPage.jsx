@@ -17,7 +17,15 @@ import ProductBox from '../components/ProductBox';
 // import '../css/style.css';
 // import Slider from "react-slick";
 import useMediaQuery from '@mui/material/useMediaQuery';
+import { useParams } from 'react-router-dom';
+import axios from 'axios';
 const DetailPage = () => {
+
+    const { id } = useParams();
+    const url = "http://127.0.0.1:5000/";
+
+    const [productData, setProductData] = useState(null);
+
 
     var settings = {
         dots: true,
@@ -29,29 +37,29 @@ const DetailPage = () => {
         autoplaySpeed: 3000,
         arrows: true,
         responsive: [
-          {
-            breakpoint: 1024, // Desktop breakpoint
-            settings: {
-              slidesToShow: 4,
-              slidesToScroll: 3,
+            {
+                breakpoint: 1024, // Desktop breakpoint
+                settings: {
+                    slidesToShow: 4,
+                    slidesToScroll: 3,
+                },
             },
-          },
-          {
-            breakpoint: 768, // Tablet breakpoint
-            settings: {
-              slidesToShow: 3,
-              slidesToScroll: 2,
+            {
+                breakpoint: 768, // Tablet breakpoint
+                settings: {
+                    slidesToShow: 3,
+                    slidesToScroll: 2,
+                },
             },
-          },
-          {
-            breakpoint: 480, // Mobile breakpoint
-            settings: {
-              slidesToShow: 1,
-              slidesToScroll: 1,
+            {
+                breakpoint: 480, // Mobile breakpoint
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1,
+                },
             },
-          },
         ],
-      };
+    };
 
     const [cartQuantity, setCartQuantity] = useState(0);
 
@@ -61,6 +69,7 @@ const DetailPage = () => {
     useEffect(() => {
         // const intervalId = setInterval(() => {
         plusSlides(1);
+
         // }, 3000);
         // return () => clearInterval(intervalId);
     }, []);
@@ -158,167 +167,195 @@ const DetailPage = () => {
     }, [mobileDevice]);
 
 
+    useEffect(() => {
+
+
+        axios.post(`${url}api/edit-products`, {
+
+            data: {
+                id: id,
+            }
+        })
+            .then((response) => {
+                console.log(response.data.data);
+                setProductData(response.data.data);
+
+            })
+            .catch((error) => {
+                console.log(error);
+            })
+
+
+
+    }, [id]);
+
+
+    useEffect(() => {
+
+        setTimeout(() => {
+            currentSlide(1);
+        }, 1000);
+
+
+
+    }, []);
 
 
     return (
         <>
 
-
-
-
-
-            <div className="container product-detail-page">
-                <div className="row">
-                    <div className="col-lg-6 col-md-6 col-12 col-xl-6 images-section">
-
-
-{
- (mobileDevice) ?(
-<>
-<img src={TestImg} alt="" className='productImg'/>
-</>
- ):
- (
-    <>
-    <div className="product-container" ref={slidesRef}>
-                            <div className="mySlides">
-
-                                <img src={TestImg} />
-                            </div>
-
-                            <div className="mySlides">
-
-                                <img src={TestImg} />
-                            </div>
-
-                            <div className="mySlides">
-
-                                <img src={TestImg} />
-                            </div>
-
-                            <div className="mySlides">
-
-                                <img src={TestImg} />
-                            </div>
-
-                            <div className="mySlides">
-
-                                <img src={TestImg} />
-                            </div>
-
-                            <div className="mySlides">
-
-                                <img src={TestImg} />
-                            </div>
-
-                            <a className="prev" onClick={() => plusSlides(-1)}>❮</a>
-                            <a className="next" onClick={() => plusSlides(1)}>❯</a>
-
-
-
-                            <div className="row mt-3">
-                                <div className="column">
-                                    <img className="demo cursor" src={TestImg} onClick={() => currentSlide(1)} alt="The Woods" />
-                                </div>
-                                <div className="column">
-                                    <img className="demo cursor" src={TestImg} onClick={() => currentSlide(2)} alt="Cinque Terre" />
-                                </div>
-                                <div className="column">
-                                    <img className="demo cursor" src={TestImg} onClick={() => currentSlide(3)} alt="Mountains and fjords" />
-                                </div>
-                                <div className="column">
-                                    <img className="demo cursor" src={TestImg} onClick={() => currentSlide(4)} alt="Northern Lights" />
-                                </div>
-                                <div className="column">
-                                    <img className="demo cursor" src={TestImg} onClick={() => currentSlide(5)} alt="Nature and sunrise" />
-                                </div>
-                                <div className="column">
-                                    <img className="demo cursor" src={TestImg} onClick={() => currentSlide(6)} alt="Snowy Mountains" />
-                                </div>
-                            </div>
-                        </div>
-    </>
- )
-}
-                        
-
-                    </div>
-                    <div className="col-lg-6 col-md-6 col-12 col-xl-6 content-section" >
-
-
-                        <h2 className='title'>
-                            Kansa Premium Design Wardrobes Comfatra
-                        </h2>
-                        <div className="rating-section">
-
-                            <Rating name="read-only" value={3} readOnly />
-                            <p>(Number of Reviews 3)</p>
-                        </div>
-
-                        <div className="price-section">
-                            <h3>Price: <span>Rs 3000</span></h3>
-                        </div>
-
-                        <div className="category-section">
-                            <h3 className='head'>Categorey</h3>
-                            <h3 className="title">Mobile Phones</h3>
-                        </div>
-
-                        <div className="quantity-section">
-
-                            <h3>Quantity</h3>
-
-                            <div className="inc-dec">
-                                <button onClick={() => {
-                                    if (cartQuantity > 0) {
-                                        setCartQuantity(
-                                            cartQuantity - 1
-                                        );
-                                    }
-                                }} >-</button> <p>{cartQuantity}</p>
-                                <button
-                                    onClick={() => {
-
-                                        setCartQuantity(
-                                            cartQuantity + 1
-                                        );
-
-                                    }}
-                                >+</button>
-                            </div>
-                        </div>
-
-                        <div className="buy-addcart-btns">
+            {
+                (productData != null) && (
+                    <>
+                        <div className="container product-detail-page">
                             <div className="row">
-                                <div className="col-lg-6 col-xl-6 col-md-12 col-sm-12">
-                                    <Button variant="contained" className='addcart' startIcon={<AddShoppingCartIcon />}  >Add Cart</Button>
+                                <div className="col-lg-6 col-md-6 col-12 col-xl-6 images-section">
+
+
+                                    {
+                                        (mobileDevice) ? (
+                                            <>
+                                                <img src={`${url}uploads/products/${productData.bannerImages[0]}`} alt="" className='productImg' />
+                                            </>
+                                        ) :
+                                            (
+                                                <>
+                                                    <div className="product-container" ref={slidesRef}>
+
+
+                                                        {
+                                                            productData.bannerImages.map((item) => (
+                                                                <div className="mySlides">
+
+                                                                    <img src={`${url}uploads/products/${item}`} />
+                                                                </div>
+                                                            ))
+                                                        }
+
+
+
+
+                                                        <a className="prev" onClick={() => plusSlides(-1)}>❮</a>
+                                                        <a className="next" onClick={() => plusSlides(1)}>❯</a>
+
+
+
+                                                        <div className="row mt-3 d-flex">
+
+                                                            {
+                                                                productData.bannerImages.map((item, index) => (
+
+
+                                                                    <div className="column">
+                                                                        <img className="demo cursor" src={`${url}uploads/products/${item}`} onClick={() => currentSlide(index + 1)} alt={productData.name} />
+                                                                    </div>
+                                                                ))
+                                                            }
+
+
+                                                        </div>
+                                                    </div>
+                                                </>
+                                            )
+                                    }
+
+
                                 </div>
-                                <div className="col-lg-6 col-xl-6 col-md-12 col-sm-12">
-                                    <Button variant="contained" className='buynow' startIcon={<LocalMallIcon />} >Buy Now</Button>
+                                <div className="col-lg-6 col-md-6 col-12 col-xl-6 content-section" >
+
+
+                                    <h2 className='title'>
+                                        {productData.name}
+                                    </h2>
+                                    <div className="rating-section">
+
+                                        <Rating name="read-only" value={3} readOnly />
+                                        <p>(Number of Reviews 3)</p>
+                                    </div>
+
+                                    <div className="price-section">
+                                        <h3>Price: <span>Rs  {productData.price}</span></h3>
+
+                                    </div>
+
+                                    {
+                                        (productData.discount != null) && (
+                                            (productData.discount > 0) && (
+                                                <div className="category-section">
+                                                    <h3 className='head'>Discount</h3>
+                                                    <h3 className="title"> {productData.discount}% Off</h3>
+                                                </div>
+                                            ))
+                                    }
+
+
+                                    <div className="category-section">
+                                        <h3 className='head'>Categorey</h3>
+                                        <h3 className="title"> {productData.category != null ? productData.category.name : "None"}</h3>
+                                    </div>
+
+                                    <div className="quantity-section">
+
+                                        <h3>Quantity</h3>
+
+                                        <div className="inc-dec">
+                                            <button onClick={() => {
+                                                if (cartQuantity > 0) {
+                                                    setCartQuantity(
+                                                        cartQuantity - 1
+                                                    );
+                                                }
+                                            }} >-</button> <p>{cartQuantity}</p>
+                                            <button
+                                                onClick={() => {
+
+                                                    setCartQuantity(
+                                                        cartQuantity + 1
+                                                    );
+
+                                                }}
+                                            >+</button>
+                                        </div>
+                                    </div>
+
+                                    <div className="buy-addcart-btns">
+                                        <div className="row">
+                                            <div className="col-lg-6 col-xl-6 col-md-12 col-sm-12">
+                                                <Button variant="contained" className='addcart' startIcon={<AddShoppingCartIcon />}  >Add Cart</Button>
+                                            </div>
+                                            <div className="col-lg-6 col-xl-6 col-md-12 col-sm-12">
+                                                <Button variant="contained" className='buynow' startIcon={<LocalMallIcon />} >Buy Now</Button>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
+                        </div >
+
+                        <div className="container relevant-product-slider">
+
+
+                            <h2 className="relevant-products-head">
+                                Relevant Products
+                            </h2>
+
+                            <Slider {...settings} >
+                                {related_products.map((item, index) => (
+
+                                    <ProductBox category={item.category} price={item.price} className="card" />
+
+                                ))}
+
+
+                            </Slider>
                         </div>
-                    </div>
-                </div>
-            </div >
-
-            <div className="container relevant-product-slider">
+                    </>
+                )
+            }
 
 
-                <h2 className="relevant-products-head">
-                    Relevant Products
-                </h2>
-
-            <Slider {...settings} >
-                    {related_products.map((item, index) => (
-                        
-                         <ProductBox category={item.category} price={item.price} className="card" />
-                         
-                    ))}
 
 
-                </Slider>
-            </div>
 
         </>
     )

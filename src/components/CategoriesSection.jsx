@@ -46,10 +46,10 @@ const CategoriesSection = (props) => {
         }
       })
       .then((response) => {
-        console.log(response.data.products);
+        console.log(response.data.data);
 
         if (response.data.success) {
-          setCategoryProducts(response.data.products);
+          setCategoryProducts(response.data.data);
         }
       })
       .catch((error) => {

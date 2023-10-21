@@ -6,7 +6,7 @@ import SliderCrousalItem from './SliderCrousalItem';
 // import testingimg from '../imgs/ecommerce slide1.png';
 
 
-const SliderCraousal = () => {
+const SliderCraousal = ({data}) => {
 
 
 
@@ -25,11 +25,14 @@ const SliderCraousal = () => {
         }
     ];
 
+    let url = "http://localhost:5000/";
+
+
     return (
         <>
             <Carousel swipe>
-                {items.map((item, index) => (
-                    <SliderCrousalItem url={item.img} key={index} text={item.text} />
+                {data.map((item, index) => (
+                    <SliderCrousalItem url={`${url}uploads/sliders/${item.banner}`}  key={index} text={item.name} />
                 ))}
             </Carousel>
         </>

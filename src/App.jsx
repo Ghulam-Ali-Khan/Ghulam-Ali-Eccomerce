@@ -26,6 +26,8 @@ import CategoryPage from './pages/CategoryPage';
 import ViewCategory from './dashboard/pages/ViewCategory';
 import ViewSliders from './dashboard/pages/ViewSliders';
 import ViewBlogs from './dashboard/pages/ViewBlogs';
+import CategoriesPage from './pages/CategoriesPage';
+import BlogDetailPage from './pages/BlogDetailPage';
 const App = () => {
 
   const location = useLocation();
@@ -44,8 +46,11 @@ const App = () => {
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/search-page' element={<SearchPage />} />
-        <Route path='/detail-page' element={<DetailPage />} />
-        <Route path='/category-page' element={<CategoryPage />} />
+        <Route path='/detail-page/:id' element={<DetailPage />} />
+        <Route path='/category-page/:uri/:id' element={<CategoryPage />} />
+        <Route path='/categories/:uri' element={<CategoriesPage/>} />
+        <Route path='/blog/:id' element={<BlogDetailPage/>} />
+
         <Route path='/dashboard' element={<Layout />}>
           <Route path='home' element={< DashHome/>} exact />
           <Route path='add-product' element={<AddProduct/>} />

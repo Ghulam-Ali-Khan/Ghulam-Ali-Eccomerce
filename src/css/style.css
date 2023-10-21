@@ -1080,4 +1080,49 @@ html {
 .add-product-page .btns-area .add-discount-yes {
   background-color: rgb(9, 175, 9);
   border-color: rgb(9, 175, 9);
+}
+
+.category-banner {
+  width: 100%;
+}
+.category-banner img {
+  width: 100%;
+}
+
+.blog-detailed .content {
+  padding: 15px;
+  border-radius: 10px;
+  font-family: "Raleway", sans-serif;
+}
+.blog-detailed .content h1 {
+  font-family: "Geologica", sans-serif;
+  font-size: 1.5rem;
+}
+.blog-detailed .date-cat {
+  display: flex;
+  justify-content: space-between;
+  font-size: 15px;
+  margin-bottom: 10px;
+}
+.blog-detailed .card-recent {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 10px;
+  overflow: hidden;
+}
+.blog-detailed .card-recent img {
+  min-width: 100px;
+  max-width: 130px;
+  max-height: 100px;
+}
+.blog-detailed .card-recent .content-recent {
+  padding: 5px;
+}
+.blog-detailed .card-recent .content-recent h2 {
+  font-size: 15px;
+  font-family: "Geologica", sans-serif;
+}
+.blog-detailed .card-recent .content-recent span {
+  font-size: 12px;
+  font-family: "Raleway", sans-serif;
 }/*# sourceMappingURL=style.css.map */

@@ -1,4 +1,4 @@
-import React, { useState,lazy } from 'react';
+import React, { useState,lazy, useEffect } from 'react';
 import SliderCraousal from '../components/SliderCraousal';
 // import { Button } from '@mui/material';
 // import { Typography } from '@material-ui/core';
@@ -7,11 +7,17 @@ import SliderCraousal from '../components/SliderCraousal';
 // import CategoriesSection from '../components/CategoriesSection';
 const CategoriesSection = lazy(() => import('../components/CategoriesSection'));
 import Slider from "react-slick";
-// import BlogCard from '../components/BlogCard';
+import BlogCard from '../components/BlogCard';
 import axios from 'axios';
-const BlogCard = lazy(() => import('../components/BlogCard'));
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+
+// const BlogCard = lazy(() => import('../components/BlogCard'));
 
 const Home = () => {
+  
+  let url = "http://localhost:5000/";
+  
   var settings = {
     dots: true,
     infinite: true,
@@ -106,11 +112,43 @@ const Home = () => {
   const [showProducts, setShowProducts] = useState(2);
 
   
+  const [blogData, setBlogData] = useState([]);
+  const [sliderData, setSliderData] = useState([]);
+
+  useEffect(()=>{
+
+    axios.get(`${url}api/fetched-blogs`)
+    .then((response)=>{
+      console.log(response.data.data);
+      setBlogData(
+        response.data.data
+      )
+    })
+    .catch((error)=>{
+      console.log(error);
+    });
+
+
+
+    axios.get(`${url}api/all-slider`)
+    .then((response)=>{
+      console.log(response.data.data);
+      setSliderData(
+        response.data.data
+      )
+    })
+    .catch((error)=>{
+      console.log(error);
+    });
+
+  },[]);
+
+
 
 
   return (
     <>
-      <SliderCraousal />
+      <SliderCraousal data={sliderData} />
       {/* <Typography className='heading-styled' component='h2' variant='h3'>
         Categories
       </Typography> */}
@@ -130,26 +168,16 @@ const Home = () => {
         <p className='latest-blogs-para'>Contemporary, minimal and modern designs embody the Lavish Alice handwriting</p>
 
 
-        <Slider {...settings} className='blog-slider'>
-          <div>
-            <BlogCard />
-          </div>
-          <div>
-            <BlogCard />
-          </div>
-          <div>
-            <BlogCard />
-          </div>
-          <div>
-            <BlogCard />
-          </div>
-          <div>
-            <BlogCard />
-          </div>
-          <div>
-            <BlogCard />
-          </div>
-        </Slider>
+        {blogData.length > 0 && (
+  <Slider {...settings} className='blog-slider'>
+    {blogData.map((item, index) => (
+      <div key={item._id}>
+        <BlogCard data={item} />
+      </div>
+    ))}
+  </Slider>
+)}
+
       </div>
 
 

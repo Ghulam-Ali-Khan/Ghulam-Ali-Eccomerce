@@ -57,9 +57,9 @@ export default function ViewBlogs() {
 
     axios.get(`${url}api/fetched-products`)
       .then((response) => {
-        console.log(response.data.products);
+        console.log(response.data.data);
 
-        setProductsData(response.data.products);
+        setProductsData(response.data.data);
 
 
       })

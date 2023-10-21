@@ -1366,3 +1366,61 @@ html{
     }
 }
 
+// Category Banner
+.category-banner{
+    width: 100%;
+    img{
+        width: 100%;
+    }
+}
+
+
+
+// Category Detailed
+
+.blog-detailed{
+    .content{
+        // margin: 1.5rem 0rem;
+        padding: 15px;
+        border-radius: 10px;
+        font-family: $secondary_font;
+        h1{
+            font-family: $heading_font;
+            font-size: 1.5rem;
+            
+        }
+    }
+    .date-cat{
+        display: flex;
+        justify-content: space-between;
+        font-size: 15px;
+        margin-bottom: 10px;
+    }
+
+.card-recent{
+        display: flex;
+        flex-direction: row;
+        margin-bottom: 10px;
+        overflow: hidden;
+        img{
+            min-width: 100px;
+            max-width: 130px;
+            max-height: 100px;
+        }
+        .content-recent{
+           
+            padding: 5px;
+
+            h2{
+              font-size: 15px;
+            font-family: $heading_font;  
+            }
+            
+
+            span{
+                font-size: 12px;
+                font-family: $secondary_font;
+            }
+        }
+    }
+}

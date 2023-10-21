@@ -1,23 +1,26 @@
 import React from 'react'
 
-const BlogCard = () => {
+const BlogCard = ({data}) => {
+
+  let url = "http://localhost:5000/";
+
   return (
     <>
 
-<div className="blog-card">
-    <div className="img-area">
-        <img src="https://htmldemo.net/reid/reid/assets/img/blog/blog1.jpg" alt="" />
+<div className="blog-card " style={{maxWidth:"300px"}}>
+    <div className="img-area ">
+        <img src={`${url}uploads/blogs/${data.cardImage}`} alt="" style={{maxWidth:"100%"}}/>
     </div>
     <div className="content">
         <div className="category-time">
-           <h3 className='category'>Shoes</h3>  
+           <h3 className='category'>{data.category!=null ? data.category.name: "None"}</h3>  
 
-           <p className='time'>22/03/2023</p>
+           <p className='time'>{new Date(data.updatedAt).toLocaleDateString('en-GB')}</p>
         </div>
        
-        <h3 className='title'>Dior F/W 2015 First Fashion Experience</h3>
-        <p className='description'>
-        Maria Denardo is the Fashion Director at theFashionSpot. Prior to joining tFS, she worked as...
+        <h3 className='title'>{data.name}</h3>
+        <p className='description' dangerouslySetInnerHTML={{ __html: (data.description.slice(0,100)+"...")  }}>
+
         </p>
     </div>
 </div>
